@@ -1,4 +1,4 @@
-package com.miw.dsdm.miwlibrary.ui
+package com.miw.dsdm.miwlibrary.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
