@@ -12,7 +12,6 @@
         android:orientation="vertical"
         android:layout_margin="@dimen/dim_general_margin">
 
-
         <Button
             android:id="@+id/login_btn_login"
             style="@style/ButtonStyle"
