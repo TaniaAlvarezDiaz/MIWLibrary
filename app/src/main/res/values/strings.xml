@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">MIWLibrary</string>
+
+    <!-- Common -->
+    <string name="common_name">Name</string>
+    <string name="common_surname">Surname</string>
+    <string name="common_email">Email</string>
+    <string name="common_password">Password</string>
+    <string name="common_changePassword">Change password</string>
+
+    <!-- LoginActivity -->
+    <string name="login_btn_login">Login</string>
+    <string name="login_text_register_question">You do not have an account?</string>
+    <string name="login_text_register_signUp">Sign up</string>
+
+    <!-- RegisterActivity -->
+    <string name="register_toolbar">Register</string>
+    <string name="register_btn_register">Sign in</string>
+
+    <!-- NavigationActivity -->
+    <string name="navigation_library_option">Library</string>
+    <string name="navigation_favorites_option">Favorites</string>
+    <string name="navigation_myProfile_option">My profile</string>
+    <string name="navigation_sign_off">Sign off</string>
+
+    <!-- ChangePasswordFragment -->
+    <string name="changePassword_oldPassword">Old password</string>
+    <string name="changePassword_newPassword">New password</string>
+    <string name="changePassword_repeatPassword">Repeat password</string>
+    <string name="changePassword_btn_modify">Modify</string>
+
 </resources>
