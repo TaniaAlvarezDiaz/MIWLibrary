@@ -65,7 +65,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     //Glide (loading images)
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    def glide_version = "4.11.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     //OkHttp (logging)
     def okhttp_version = "4.6.0"

@@ -1,12 +1,10 @@
 package com.miw.dsdm.miwlibrary.data.db.dao
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.miw.dsdm.miwlibrary.data.db.entities.UserEntity
 import com.miw.dsdm.miwlibrary.data.db.entities.UserTable
 
+@Dao
 interface UserDao {
     @Insert
     fun insert(user: UserEntity): Long
