@@ -11,7 +11,6 @@
 
     <!-- LoginActivity -->
     <string name="login_btn_login">Iniciar sesión</string>
-    <string name="login_text_register_question">¿No tienes cuenta?</string>
     <string name="login_text_register_signUp">Regístrate</string>
 
     <!-- RegisterActivity -->

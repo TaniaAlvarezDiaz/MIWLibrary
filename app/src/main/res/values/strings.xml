@@ -10,7 +10,6 @@
 
     <!-- LoginActivity -->
     <string name="login_btn_login">Login</string>
-    <string name="login_text_register_question">You do not have an account?</string>
     <string name="login_text_register_signUp">Sign up</string>
 
     <!-- RegisterActivity -->

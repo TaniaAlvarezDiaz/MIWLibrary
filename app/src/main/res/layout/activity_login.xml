@@ -12,10 +12,75 @@
         android:orientation="vertical"
         android:layout_margin="@dimen/dim_general_margin">
 
+        <ImageView
+            android:id="@+id/login_logo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/dim_50"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/login_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/common_email"
+            android:textSize="@dimen/dim_16_sp" />
+
+        <EditText
+            android:id="@+id/login_username_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_20"
+            android:layout_marginBottom="@dimen/dim_20"
+            android:background="@drawable/edit_text_border"
+            android:ems="10"
+            android:hint="@string/common_email"
+            android:inputType="textEmailAddress"
+            android:labelFor="@id/login_username"
+            android:padding="@dimen/dim_10" />
+
+        <TextView
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/common_password"
+            android:textSize="@dimen/dim_16_sp" />
+
+        <EditText
+            android:id="@+id/login_password_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_20"
+            android:layout_marginBottom="@dimen/dim_20"
+            android:background="@drawable/edit_text_border"
+            android:ems="10"
+            android:hint="@string/common_password"
+            android:inputType="textPassword"
+            android:labelFor="@id/login_password"
+            android:padding="@dimen/dim_10" />
+
         <Button
             android:id="@+id/login_btn_login"
             style="@style/ButtonStyle"
-            android:text="@string/login_btn_login"/>
+            android:layout_marginTop="@dimen/dim_50"
+            android:text="@string/login_btn_login" />
+
+        <TextView
+            android:id="@+id/login_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dim_50"
+            android:layout_marginBottom="@dimen/dim_20"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:text="@string/login_text_register_signUp"
+            android:textColor="@drawable/text_view_style"
+            android:textSize="@dimen/dim_button_text_size" />
 
     </LinearLayout>
 
