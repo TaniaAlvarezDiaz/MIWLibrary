@@ -1,8 +1,10 @@
 package com.miw.dsdm.miwlibrary.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.miw.dsdm.miwlibrary.R
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -10,6 +12,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         
-        //login_btn_login.setOnClickListener { startActivity(Intent(this, NavigationActivity::class.java)) }
+        login_btn_login.setOnClickListener { startActivity(Intent(this, NavigationActivity::class.java)) }
     }
 }

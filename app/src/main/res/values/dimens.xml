@@ -13,4 +13,6 @@
     <dimen name="dim_button_height">50dp</dimen>
     <dimen name="dim_button_text_size">18sp</dimen>
 
+    <dimen name="dim_login_logo_width_height">200dp</dimen>
+
 </resources>

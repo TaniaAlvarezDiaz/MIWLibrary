@@ -10,7 +10,7 @@
 
     <!-- LoginActivity -->
     <string name="login_btn_login">Login</string>
-    <string name="login_text_register_signUp">Sign up</string>
+    <string name="login_text_register_sign_up">Sign up</string>
 
     <!-- RegisterActivity -->
     <string name="register_toolbar">Register</string>
@@ -20,7 +20,10 @@
     <string name="navigation_library_option">Library</string>
     <string name="navigation_favorites_option">Favorites</string>
     <string name="navigation_myProfile_option">My profile</string>
-    <string name="navigation_sign_off">Sign off</string>
+    <string name="navigation_sign_out">Sign out</string>
+    <string name="navigation_sign_out_alert_message">Do you really want to sign out?</string>
+    <string name="navigation_close_drawer">Close</string>
+    <string name="navigation_open_drawer">Open</string>
 
     <!-- ChangePasswordFragment -->
     <string name="changePassword_oldPassword">Old password</string>
