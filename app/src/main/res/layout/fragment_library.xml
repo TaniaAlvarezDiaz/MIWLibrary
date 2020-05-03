@@ -5,9 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.LibraryFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/library_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/navigation_library_option" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

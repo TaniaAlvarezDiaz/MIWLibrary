@@ -7,7 +7,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.miw.dsdm.miwlibrary.R
-import com.miw.dsdm.miwlibrary.data.storage.local.SharedPreferenceStorage
+import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.ui.fragments.FavoritesFragment
 import com.miw.dsdm.miwlibrary.ui.fragments.LibraryFragment
 import com.miw.dsdm.miwlibrary.ui.fragments.MyProfileFragment
@@ -120,7 +120,7 @@ class NavigationActivity : AppCompatActivity() {
             message = getString(R.string.navigation_sign_out_alert_message)
             okButton {
                 //Remove preferences
-                SharedPreferenceStorage(this@NavigationActivity).removeUserLoggedInt()
+                Settings(this@NavigationActivity).clearAll()
 
                 //Go to Login
                 val intent = Intent(this@NavigationActivity, LoginActivity::class.java)
