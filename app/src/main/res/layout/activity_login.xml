@@ -25,43 +25,27 @@
 
         <TextView
             android:id="@+id/login_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/common_email"
-            android:textSize="@dimen/dim_16_sp" />
+            style="@style/TextViewStyle"
+            android:text="@string/common_email" />
 
         <EditText
             android:id="@+id/login_username_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_20"
-            android:layout_marginBottom="@dimen/dim_20"
-            android:background="@drawable/edit_text_border"
-            android:ems="10"
+            style="@style/EditTextStyle"
             android:hint="@string/common_email"
             android:inputType="textEmailAddress"
-            android:labelFor="@id/login_username"
-            android:padding="@dimen/dim_10" />
+            android:labelFor="@id/login_username" />
 
         <TextView
             android:id="@+id/login_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/common_password"
-            android:textSize="@dimen/dim_16_sp" />
+            style="@style/TextViewStyle"
+            android:text="@string/common_password" />
 
         <EditText
             android:id="@+id/login_password_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_20"
-            android:layout_marginBottom="@dimen/dim_20"
-            android:background="@drawable/edit_text_border"
-            android:ems="10"
+            style="@style/EditTextStyle"
             android:hint="@string/common_password"
             android:inputType="textPassword"
-            android:labelFor="@id/login_password"
-            android:padding="@dimen/dim_10" />
+            android:labelFor="@id/login_password" />
 
         <Button
             android:id="@+id/login_btn_login"

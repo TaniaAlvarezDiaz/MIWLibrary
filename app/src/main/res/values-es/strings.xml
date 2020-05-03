@@ -7,6 +7,7 @@
     <string name="common_surname">Apellidos</string>
     <string name="common_email">Correo electrónico</string>
     <string name="common_password">Contraseña</string>
+    <string name="common_repeat_password">Repetir contraseña</string>
     <string name="common_changePassword">Cambiar contraseña</string>
 
     <!-- LoginActivity -->
@@ -28,5 +29,21 @@
     <string name="changePassword_newPassword">Nueva contraseña</string>
     <string name="changePassword_repeatPassword">Repite contraseña</string>
     <string name="changePassword_btn_modify">Modificar</string>
+
+    <!-- Errors -->
+    <string name="error_empty_field">Campo vacío</string>
+    <string name="error_passwords_different">Las contraseñas deben ser iguales</string>
+    <string name="error_password_length">La contraseña debe tener al menos 8 caracteres</string>
+
+    <!-- Profile -->
+    <string name="profile_btn_password">Cambiar contraseña</string>
+    <string name="profile_toolbar">Perfil</string>
+
+    <!-- Change Password -->
+    <string name="change_password_btn_password">Cambiar contraseña</string>
+    <string name="change_password_toolbar">Cambiar contraseña</string>
+    <string name="change_password_old">Antigua contraseña</string>
+    <string name="change_password_new">Nueva contraseña</string>
+    <string name="change_password_new_repeat">Repetir nueva contraseña</string>
 
 </resources>

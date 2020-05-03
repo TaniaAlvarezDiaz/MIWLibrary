@@ -15,8 +15,33 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dim_button_height</item>
         <item name="android:textSize">@dimen/dim_button_text_size</item>
+        <item name="android:textColor">@color/colorText</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:background">@drawable/button_style</item>
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dim_14_sp</item>
+        <item name="android:layout_marginTop">@dimen/dim_20</item>
+        <item name="android:layout_marginBottom">@dimen/dim_20</item>
+        <item name="android:background">@drawable/edit_text_border</item>
+        <item name="android:padding">@dimen/dim_10</item>
+    </style>
+
+    <style name="TextViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dim_16_sp</item>
+    </style>
+
+    <style name="TextViewShowInfoStyle" parent="@style/TextViewStyle">
+        <item name="android:textSize">@dimen/dim_14_sp</item>
+        <item name="android:layout_marginTop">@dimen/dim_20</item>
+        <item name="android:layout_marginBottom">@dimen/dim_20</item>
+        <item name="android:background">@drawable/edit_text_border</item>
+        <item name="android:padding">@dimen/dim_10</item>
     </style>
 
 </resources>

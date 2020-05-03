@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activities.RegisterActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/register_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="@string/register_toolbar"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        app:navigationIcon="@drawable/ic_arrow" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dim_20"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/register_name"
+                style="@style/TextViewStyle"
+                android:text="@string/common_name" />
+
+            <EditText
+                android:id="@+id/register_name_value"
+                style="@style/EditTextStyle"
+                android:hint="@string/common_name"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/register_surname"
+                style="@style/TextViewStyle"
+                android:text="@string/common_surname" />
+
+            <EditText
+                android:id="@+id/register_surname_value"
+                style="@style/EditTextStyle"
+                android:hint="@string/common_surname"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/register_email"
+                style="@style/TextViewStyle"
+                android:text="@string/common_email" />
+
+            <EditText
+                android:id="@+id/register_email_value"
+                style="@style/EditTextStyle"
+                android:hint="@string/common_email"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:id="@+id/register_password"
+                style="@style/TextViewStyle"
+                android:text="@string/common_password" />
+
+            <EditText
+                android:id="@+id/register_password_value"
+                style="@style/EditTextStyle"
+                android:hint="@string/common_password"
+                android:inputType="textPassword"
+                android:labelFor="@id/register_password" />
+
+            <TextView
+                android:id="@+id/register_repeat_password"
+                style="@style/TextViewStyle"
+                android:text="@string/common_repeat_password" />
+
+            <EditText
+                android:id="@+id/register_repeat_password_value"
+                style="@style/EditTextStyle"
+                android:hint="@string/common_repeat_password"
+                android:inputType="textPassword"
+                android:labelFor="@id/register_repeat_password" />
+
+            <Button
+                android:id="@+id/register_btn_register"
+                style="@style/ButtonStyle"
+                android:layout_marginTop="@dimen/dim_50"
+                android:clickable="true"
+                android:onClick="onSubmit"
+                android:text="@string/register_btn_register" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
