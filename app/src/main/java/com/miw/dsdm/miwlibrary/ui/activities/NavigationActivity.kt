@@ -38,20 +38,17 @@ class NavigationActivity : AppCompatActivity() {
      * Function to initialize components
      */
     private fun initialize() {
-        //Drawer
-        initializeDrawer()
-
         //Toolbar
         initializeToolbar()
+
+        //Drawer
+        initializeDrawer()
 
         //Left menu
         initializeLeftMenu()
 
         //Bottom menu
-        navigation_bottom_menu.setOnNavigationItemSelectedListener {
-            launchFragmentBottomNavigation(it.itemId, false)
-            true
-        }
+        initializeBottomMenu()
 
         //Open LibraryFragment by default
         navigation_bottom_menu.selectedItemId = R.id.navigation_library
@@ -91,12 +88,15 @@ class NavigationActivity : AppCompatActivity() {
      * Function to initialize left menu
      */
     private fun initializeLeftMenu() {
+        //Necessary to bring the NavigationView to the front. It could be ignored in the case that
+        //this component is the last element of the layout, in this case, if it were placed under the ConstraintLayout
+        navigation_left_menu.bringToFront()
+
         navigation_left_menu.setNavigationItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.navigation_sign_out -> signOut()
                 else -> launchFragmentBottomNavigation(it.itemId, true)
             }
-            it.isChecked = true
             navigation_drawer.closeDrawers()
             true
         }
@@ -139,6 +139,7 @@ class NavigationActivity : AppCompatActivity() {
      */
     private fun launchFragmentBottomNavigation(id: Int, leftMenu: Boolean) {
         if (leftMenu) navigation_bottom_menu.selectedItemId = id
+        else navigation_left_menu.setCheckedItem(id)
 
         val fragment = when (id) {
             R.id.navigation_library -> {

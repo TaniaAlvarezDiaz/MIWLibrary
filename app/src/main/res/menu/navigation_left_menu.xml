@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-        <group android:checkableBehavior="single">
+        <group
+            android:id="@+id/left_menu_app_options"
+            android:checkableBehavior="single">
+
             <item
                 android:id="@+id/navigation_library"
                 android:icon="@drawable/ic_library"
@@ -17,14 +20,13 @@
                 android:title="@string/navigation_myProfile_option" />
         </group>
 
-        <item android:title="">
-            <group android:checkableBehavior="single">
+        <group
+            android:id="@+id/left_menu_auxiliar_options"
+            android:checkableBehavior="single">
 
-                <item
-                    android:id="@+id/navigation_sign_out"
-                    android:icon="@drawable/ic_sign_out"
-                    android:title="@string/navigation_sign_out" />
-
-            </group>
-        </item>
+            <item
+                android:id="@+id/navigation_sign_out"
+                android:icon="@drawable/ic_sign_out"
+                android:title="@string/navigation_sign_out" />
+        </group>
 </menu>
