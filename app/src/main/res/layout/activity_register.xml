@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:title="@string/register_toolbar"
+        app:titleTextColor="@color/colorText"
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         app:navigationIcon="@drawable/ic_arrow" />
 
@@ -85,8 +86,6 @@
             <Button
                 android:id="@+id/register_btn_register"
                 style="@style/ButtonStyle"
-                android:layout_marginTop="@dimen/dim_50"
-                android:clickable="true"
                 android:onClick="onSubmit"
                 android:text="@string/register_btn_register" />
 

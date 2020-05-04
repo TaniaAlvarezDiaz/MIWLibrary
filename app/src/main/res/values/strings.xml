@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">MIWLibrary</string>
 
+    <!-- Errors -->
+    <string name="error_empty_field">Empty field</string>
+    <string name="error_passwords_different">Passwords must be the same</string>
+    <string name="error_password_length">Password must be at least 8 characters</string>
+
     <!-- Common -->
     <string name="common_name">Name</string>
     <string name="common_surname">Surname</string>
@@ -29,26 +34,12 @@
     <!-- LibraryFragment -->
     <string name="library_search_hint">Search by title or author</string>
 
-    <!-- ChangePasswordFragment -->
-    <string name="changePassword_oldPassword">Old password</string>
-    <string name="changePassword_newPassword">New password</string>
-    <string name="changePassword_repeatPassword">Repeat password</string>
-    <string name="changePassword_btn_modify">Modify</string>
-
-    <!-- Errors -->
-    <string name="error_empty_field">Empty field</string>
-    <string name="error_passwords_different">Passwords must be the same</string>
-    <string name="error_password_length">Password must be at least 8 characters</string>
-
-    <!-- Profile -->
+    <!-- ProfileFragment -->
     <string name="profile_btn_password">Change password</string>
-    <string name="profile_toolbar">Profile</string>
 
-    <!-- Change Password -->
-    <string name="change_password_btn_password">Change password</string>
-    <string name="change_password_toolbar">Change Password</string>
-    <string name="change_password_old">Old password</string>
-    <string name="change_password_new">New password</string>
-    <string name="change_password_new_repeat">Repeat new password</string>
+    <!-- ChangePasswordFragment -->
+    <string name="change_password_old_password">Old password</string>
+    <string name="change_password_new_password">New password</string>
+    <string name="change_password_new_password_repeat">Repeat new password</string>
 
 </resources>

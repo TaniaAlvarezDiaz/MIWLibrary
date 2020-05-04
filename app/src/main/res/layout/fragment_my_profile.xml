@@ -1,68 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.activities.RegisterActivity">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/profile_toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:title="@string/profile_toolbar"
-        style="@style/Widget.MaterialComponents.Toolbar.Primary"
-        app:navigationIcon="@drawable/ic_arrow" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_20"
+        android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/profile_name"
+            style="@style/TextViewStyle"
+            android:text="@string/common_name" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dim_20"
-            android:orientation="vertical">
+        <TextView
+            android:id="@+id/profile_name_value"
+            style="@style/TextViewShowInfoStyle"
+            android:inputType="textPersonName" />
 
-            <TextView
-                android:id="@+id/profile_name"
-                style="@style/TextViewStyle"
-                android:text="@string/common_name" />
+        <TextView
+            android:id="@+id/profile_surname"
+            style="@style/TextViewStyle"
+            android:text="@string/common_surname" />
 
-            <TextView
-                android:id="@+id/profile_name_value"
-                style="@style/TextViewShowInfoStyle"
-                android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/profile_surname_value"
+            style="@style/TextViewShowInfoStyle"
+            android:inputType="textPersonName" />
 
-            <TextView
-                android:id="@+id/profile_surname"
-                style="@style/TextViewStyle"
-                android:text="@string/common_surname" />
+        <TextView
+            android:id="@+id/profile_email"
+            style="@style/TextViewStyle"
+            android:text="@string/common_email" />
 
-            <TextView
-                android:id="@+id/profile_surname_value"
-                style="@style/TextViewShowInfoStyle"
-                android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/profile_email_value"
+            style="@style/TextViewShowInfoStyle"
+            android:inputType="textEmailAddress" />
 
-            <TextView
-                android:id="@+id/profile_email"
-                style="@style/TextViewStyle"
-                android:text="@string/common_email" />
+        <Button
+            android:id="@+id/profile_btn_password"
+            style="@style/ButtonStyle"
+            android:text="@string/profile_btn_password" />
 
-            <TextView
-                android:id="@+id/profile_email_value"
-                style="@style/TextViewShowInfoStyle"
-                android:inputType="textEmailAddress" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/profile_btn_password"
-                style="@style/ButtonStyle"
-                android:layout_marginTop="@dimen/dim_50"
-                android:clickable="true"
-                android:text="@string/profile_btn_password" />
-
-        </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+</ScrollView>

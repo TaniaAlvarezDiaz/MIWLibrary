@@ -43,14 +43,12 @@
         <EditText
             android:id="@+id/login_password_value"
             style="@style/EditTextStyle"
-            android:padding="@dimen/dim_10"
             android:hint="@string/common_password"
             android:inputType="textPassword"/>
 
         <Button
             android:id="@+id/login_btn_login"
             style="@style/ButtonStyle"
-            android:layout_marginTop="@dimen/dim_50"
             android:text="@string/login_btn_login" />
 
         <TextView

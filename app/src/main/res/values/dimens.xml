@@ -23,6 +23,7 @@
     <dimen name="dim_card_view_margin">8dp</dimen>
     <dimen name="dim_card_view_layout_padding">4dp</dimen>
     <dimen name="dim_card_view_elevation">4dp</dimen>
+    <dimen name="dim_card_view_radius">4dp</dimen>
     <dimen name="dim_card_view_stroke_width">2dp</dimen>
     <dimen name="dim_card_view_book_image_max_width">120dp</dimen>
     <dimen name="dim_card_view_favorite_image_width_height">30dp</dimen>

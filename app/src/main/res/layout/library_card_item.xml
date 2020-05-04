@@ -9,7 +9,7 @@
     android:clickable="true"
     android:focusable="true"
     app:cardElevation="@dimen/dim_card_view_elevation"
-    app:cardCornerRadius="@dimen/cardview_default_radius"
+    app:cardCornerRadius="@dimen/dim_card_view_radius"
     app:cardBackgroundColor="@android:color/white"
     app:strokeWidth="@dimen/dim_card_view_stroke_width"
     app:strokeColor="@color/colorPrimary">
