@@ -2,27 +2,38 @@ package com.miw.dsdm.miwlibrary.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.model.Book
 import kotlinx.android.synthetic.main.library_card_item.view.*
 
 class LibraryAdapter(val items: List<Book>, val itemClick: (Book) -> Unit) :
-    RecyclerView.Adapter<LibraryAdapter.ViewHolder>() {
+    RecyclerView.Adapter<LibraryAdapter.ViewHolder>(), Filterable {
+
+    var filterList = listOf<Book>()
+
+    init {
+        filterList = items
+    }
 
     class ViewHolder(val cardView: CardView, val itemClick: (Book) -> Unit) :
         RecyclerView.ViewHolder(cardView) {
         fun bind(book: Book) {
             with(book) {
-                itemView.setOnClickListener { itemClick(this) }
-                //TODO complete image
+                if (imagePath != null && imagePath.isNotEmpty())
+                    Glide.with(itemView).load(imagePath).into(itemView.library_card_item_image)
                 itemView.library_card_item_title.text = title
                 itemView.library_card_item_author.text = author
                 itemView.library_card_item_description.text = description
                 itemView.library_card_item_favorite.setImageResource(
-                    if (favorite) R.drawable.ic_favorites_checked else R.drawable.ic_favorites
+                    if (favorite) R.drawable.ic_favorites_selected else R.drawable.ic_favorites_unselected
                 )
+
+                itemView.setOnClickListener { itemClick(this) }
             }
         }
     }
@@ -33,9 +44,46 @@ class LibraryAdapter(val items: List<Book>, val itemClick: (Book) -> Unit) :
         return ViewHolder(view, itemClick)
     }
 
-    override fun getItemCount() = items.size
+    override fun getItemCount() = filterList.size
 
     override fun onBindViewHolder(holder: LibraryAdapter.ViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(filterList[position])
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val valSearch = constraint.toString()
+                filterList = if (valSearch.isEmpty()) items else filterByTitleOrAuthor(
+                    valSearch
+                        .toLowerCase()
+                )
+                val filterResults = FilterResults()
+                filterResults.values = filterList
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filterList = results?.values as List<Book>
+                notifyDataSetChanged()
+            }
+        }
+    }
+
+    /**
+     * Function that filters books by title or author
+     */
+    private fun filterByTitleOrAuthor(valSearch: CharSequence): List<Book> {
+        val res = mutableListOf<Book>()
+        for (book in items) {
+            with(book) {
+                if ((title != null && title.toLowerCase().contains(valSearch)) or
+                    (author != null && author.toLowerCase().contains(valSearch))
+                ) {
+                    res.add(this)
+                }
+            }
+        }
+        return res
     }
 }

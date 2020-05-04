@@ -3,10 +3,16 @@ package com.miw.dsdm.miwlibrary.model
 import android.os.Parcel
 import android.os.Parcelable
 
-class Book(val title: String?, val author: String?, val description: String?,
-           val favorite: Boolean) : Parcelable {
+class Book(
+    val imagePath: String?,
+    val title: String?,
+    val author: String?,
+    val description: String?,
+    val favorite: Boolean
+) : Parcelable {
 
     constructor(parcel: Parcel) : this(
+        imagePath = parcel.readString(),
         title = parcel.readString(),
         author = parcel.readString(),
         description = parcel.readString(),
@@ -14,6 +20,7 @@ class Book(val title: String?, val author: String?, val description: String?,
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(imagePath)
         parcel.writeString(title)
         parcel.writeString(author)
         parcel.writeString(description)

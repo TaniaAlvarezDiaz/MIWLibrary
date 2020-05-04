@@ -26,6 +26,9 @@
     <string name="navigation_close_drawer">Cerrar</string>
     <string name="navigation_open_drawer">Abrir</string>
 
+    <!-- LibraryFragment -->
+    <string name="library_search_hint">Búsqueda por título o autor</string>
+
     <!-- ChangePasswordFragment -->
     <string name="changePassword_oldPassword">Antigua contraseña</string>
     <string name="changePassword_newPassword">Nueva contraseña</string>

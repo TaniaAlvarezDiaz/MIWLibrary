@@ -50,8 +50,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="?android:attr/windowBackground"
+            android:background="@color/colorPrimaryDark"
             app:itemIconTint="@drawable/navigation_bottom_menu_style"
+            app:itemTextColor="@drawable/navigation_bottom_menu_style"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/navigation_bottom_menu" />
 
