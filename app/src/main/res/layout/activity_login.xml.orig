@@ -30,10 +30,21 @@
 
         <EditText
             android:id="@+id/login_username_value"
+<<<<<<< HEAD
             style="@style/EditTextStyle"
+            android:hint="@string/common_email"
+            android:inputType="textEmailAddress"
+            android:labelFor="@id/login_username" />
+=======
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_20"
+            android:layout_marginBottom="@dimen/dim_20"
             android:padding="@dimen/dim_10"
+            android:background="@drawable/edit_text_border"
             android:hint="@string/common_email"
             android:inputType="textEmailAddress" />
+>>>>>>> navigation_view
 
         <TextView
             android:id="@+id/login_password"
@@ -42,10 +53,21 @@
 
         <EditText
             android:id="@+id/login_password_value"
+<<<<<<< HEAD
             style="@style/EditTextStyle"
+            android:hint="@string/common_password"
+            android:inputType="textPassword"
+            android:labelFor="@id/login_password" />
+=======
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dim_20"
+            android:layout_marginBottom="@dimen/dim_20"
             android:padding="@dimen/dim_10"
+            android:background="@drawable/edit_text_border"
             android:hint="@string/common_password"
             android:inputType="textPassword"/>
+>>>>>>> navigation_view
 
         <Button
             android:id="@+id/login_btn_login"

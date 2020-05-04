@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <group
+            android:id="@+id/left_menu_app_options"
+            android:checkableBehavior="single">
+
+            <item
+                android:id="@+id/navigation_library"
+                android:icon="@drawable/ic_library"
+                android:title="@string/navigation_library_option" />
+
+            <item
+                android:id="@+id/navigation_favorites"
+                android:icon="@drawable/ic_favorites"
+                android:title="@string/navigation_favorites_option" />
+
+            <item
+                android:id="@+id/navigation_myProfile"
+                android:icon="@drawable/ic_my_profile"
+                android:title="@string/navigation_myProfile_option" />
+        </group>
+
+        <group
+            android:id="@+id/left_menu_auxiliar_options"
+            android:checkableBehavior="single">
+
+            <item
+                android:id="@+id/navigation_sign_out"
+                android:icon="@drawable/ic_sign_out"
+                android:title="@string/navigation_sign_out" />
+        </group>
+</menu>

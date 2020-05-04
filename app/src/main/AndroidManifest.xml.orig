@@ -12,10 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
+        <activity android:name=".ui.activities.RegisterActivity"></activity>
+=======
         <activity
             android:name=".ui.activities.NavigationActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".ui.activities.RegisterActivity"></activity>
+>>>>>>> navigation_view
         <activity
             android:name=".ui.activities.LoginActivity"
             android:screenOrientation="portrait"
@@ -26,9 +29,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity
             android:name=".ui.activities.NavigationActivity"
             android:screenOrientation="portrait" />
+=======
+>>>>>>> navigation_view
     </application>
 
 </manifest>

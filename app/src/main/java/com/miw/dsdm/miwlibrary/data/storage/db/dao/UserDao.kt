@@ -1,8 +1,8 @@
-package com.miw.dsdm.miwlibrary.data.db.dao
+package com.miw.dsdm.miwlibrary.data.storage.db.dao
 
 import androidx.room.*
-import com.miw.dsdm.miwlibrary.data.db.entities.UserEntity
-import com.miw.dsdm.miwlibrary.data.db.entities.UserTable
+import com.miw.dsdm.miwlibrary.data.storage.db.entities.UserEntity
+import com.miw.dsdm.miwlibrary.data.storage.db.entities.UserTable
 
 @Dao
 interface UserDao {

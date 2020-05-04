@@ -1,4 +1,4 @@
-package com.miw.dsdm.miwlibrary.data.db.entities
+package com.miw.dsdm.miwlibrary.data.storage.db.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dim_card_view_height"
+    android:layout_marginBottom="@dimen/dim_card_view_margin"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardElevation="@dimen/dim_card_view_elevation"
+    app:cardCornerRadius="@dimen/cardview_default_radius"
+    app:cardBackgroundColor="@android:color/white"
+    app:strokeWidth="@dimen/dim_card_view_stroke_width"
+    app:strokeColor="@color/colorPrimary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dim_card_view_layout_padding">
+
+        <ImageView
+            android:id="@+id/library_card_item_image"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:maxWidth="@dimen/dim_card_view_book_image_max_width"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            android:src="@drawable/book_cover_not_available"/>
+
+        <LinearLayout
+            android:id="@+id/library_card_item_linear_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dim_10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/library_card_item_image"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/library_card_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dim_16_sp"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/library_card_item_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorHint"
+                android:textSize="@dimen/dim_16_sp" />
+
+            <TextView
+                android:id="@+id/library_card_item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dim_14_sp"
+                android:maxLines="4"
+                android:ellipsize="end"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/library_card_item_favorite"
+            android:layout_width="@dimen/dim_card_view_favorite_image_width_height"
+            android:layout_height="@dimen/dim_card_view_favorite_image_width_height"
+            android:layout_marginTop="@dimen/dim_card_view_favorite_image_margin_top"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,11 +1,11 @@
-package com.miw.dsdm.miwlibrary.data.db
+package com.miw.dsdm.miwlibrary.data.storage.db
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.miw.dsdm.miwlibrary.LibraryApp
-import com.miw.dsdm.miwlibrary.data.db.dao.UserDao
-import com.miw.dsdm.miwlibrary.data.db.entities.UserEntity
+import com.miw.dsdm.miwlibrary.data.storage.db.dao.UserDao
+import com.miw.dsdm.miwlibrary.data.storage.db.entities.UserEntity
 
 @Database(entities = [UserEntity::class], version = 1)
 abstract class LibraryDatabase : RoomDatabase() {
