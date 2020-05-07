@@ -9,11 +9,11 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/register_toolbar"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:title="@string/register_toolbar"
         app:titleTextColor="@color/colorText"
-        style="@style/Widget.MaterialComponents.Toolbar.Primary"
         app:navigationIcon="@drawable/ic_arrow" />
 
     <ScrollView
@@ -23,12 +23,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dim_20"
+            android:layout_margin="@dimen/dim_general_margin"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/register_name"
-                style="@style/TextViewStyle"
+                style="@style/TextViewLabelStyle"
                 android:text="@string/common_name" />
 
             <EditText
@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/register_surname"
-                style="@style/TextViewStyle"
+                style="@style/TextViewLabelStyle"
                 android:text="@string/common_surname" />
 
             <EditText
@@ -50,7 +50,7 @@
 
             <TextView
                 android:id="@+id/register_email"
-                style="@style/TextViewStyle"
+                style="@style/TextViewLabelStyle"
                 android:text="@string/common_email" />
 
             <EditText
@@ -61,7 +61,7 @@
 
             <TextView
                 android:id="@+id/register_password"
-                style="@style/TextViewStyle"
+                style="@style/TextViewLabelStyle"
                 android:text="@string/common_password" />
 
             <EditText
@@ -73,7 +73,7 @@
 
             <TextView
                 android:id="@+id/register_repeat_password"
-                style="@style/TextViewStyle"
+                style="@style/TextViewLabelStyle"
                 android:text="@string/common_repeat_password" />
 
             <EditText

@@ -1,9 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activities.BookActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/book_toolbar"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="@string/book_toolbar"
+        app:titleTextColor="@color/colorText"
+        app:navigationIcon="@drawable/ic_arrow" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/dim_general_margin">
+        
+            <ImageView
+                android:id="@+id/book_image"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dim_book_image_height"
+                android:layout_marginBottom="@dimen/dim_20"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/book_image_content_description"
+                android:src="@drawable/book_cover_not_available"/>
+
+            <TextView
+                android:id="@+id/book_title"
+                style="@style/TextViewLabelStyle"
+                android:text="@string/book_title"/>
+
+            <TextView
+                android:id="@+id/book_title_value"
+                style="@style/TextViewInfoStyle"/>
+
+            <TextView
+                android:id="@+id/book_author"
+                style="@style/TextViewLabelStyle"
+                android:text="@string/book_author"/>
+
+            <TextView
+                android:id="@+id/book_author_value"
+                style="@style/TextViewInfoStyle"/>
+
+            <TextView
+                android:id="@+id/book_publisher"
+                style="@style/TextViewLabelStyle"
+                android:text="@string/book_publisher"/>
+
+            <TextView
+                android:id="@+id/book_publisher_value"
+                style="@style/TextViewInfoStyle"/>
+
+            <TextView
+                android:id="@+id/book_publication_year"
+                style="@style/TextViewLabelStyle"
+                android:text="@string/book_publication_year"/>
+
+            <TextView
+                android:id="@+id/book_publication_year_value"
+                style="@style/TextViewInfoStyle"/>
+
+            <TextView
+                android:id="@+id/book_language"
+                style="@style/TextViewLabelStyle"
+                android:text="@string/book_language"/>
+
+            <TextView
+                android:id="@+id/book_language_value"
+                style="@style/TextViewInfoStyle"/>
+
+            <TextView
+                android:id="@+id/book_categories"
+                style="@style/TextViewLabelStyle"
+                android:text="@string/book_categories"/>
+
+            <TextView
+                android:id="@+id/book_categories_value"
+                style="@style/TextViewInfoStyle"/>
+
+            <TextView
+                android:id="@+id/book_summary"
+                style="@style/TextViewLabelStyle"
+                android:text="@string/book_summary"/>
+
+            <TextView
+                android:id="@+id/book_summary_value"
+                style="@style/TextViewInfoStyle"/>
+
+            <TextView
+                android:id="@+id/book_content"
+                style="@style/TextViewLabelStyle"
+                android:text="@string/book_content"/>
+
+            <TextView
+                android:id="@+id/book_content_value"
+                style="@style/TextViewInfoStyle"/>
+
+            <TextView
+                android:id="@+id/book_more_information"
+                style="@style/TextViewLabelStyle"
+                android:text="@string/book_details_url"
+                android:textColor="@drawable/text_view_style"
+                android:clickable="true"
+                android:focusable="true"/>
+            
+        </LinearLayout>
+        
+    </ScrollView>
+
+</LinearLayout>

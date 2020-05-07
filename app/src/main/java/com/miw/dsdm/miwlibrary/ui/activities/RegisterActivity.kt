@@ -13,8 +13,8 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        setSupportActionBar(register_toolbar)
-        register_btn_register.setOnClickListener { onSubmit() }
+
+        initialize()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -22,6 +22,17 @@ class RegisterActivity : AppCompatActivity() {
         return true
     }
 
+    /**
+     * Function to initialize components
+     */
+    private fun initialize() {
+        setSupportActionBar(register_toolbar)
+        register_btn_register.setOnClickListener { onSubmit() }
+    }
+
+    /**
+     * Function to register user
+     */
     private fun onSubmit() {
         val name = register_name_value.text.toString()
         val surname = register_surname_value.text.toString()
@@ -36,6 +47,9 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Function to validate user data
+     */
     private fun validate(user: User): Boolean {
         var valid = true
 

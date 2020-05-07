@@ -31,17 +31,16 @@
         <item name="android:padding">@dimen/dim_10</item>
     </style>
 
-    <style name="TextViewStyle">
+    <style name="TextViewLabelStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/dim_16_sp</item>
     </style>
 
-    <style name="TextViewShowInfoStyle" parent="@style/TextViewStyle">
+    <style name="TextViewInfoStyle" parent="@style/TextViewLabelStyle">
         <item name="android:textSize">@dimen/dim_14_sp</item>
         <item name="android:layout_marginTop">@dimen/dim_20</item>
         <item name="android:layout_marginBottom">@dimen/dim_20</item>
-        <item name="android:padding">@dimen/dim_10</item>
     </style>
 
 </resources>

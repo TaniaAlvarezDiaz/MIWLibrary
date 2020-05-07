@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/login_username"
-            style="@style/TextViewStyle"
+            style="@style/TextViewLabelStyle"
             android:text="@string/common_email" />
 
         <EditText
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/login_password"
-            style="@style/TextViewStyle"
+            style="@style/TextViewLabelStyle"
             android:text="@string/common_password" />
 
         <EditText

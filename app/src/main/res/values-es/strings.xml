@@ -35,6 +35,19 @@
     <!-- LibraryFragment -->
     <string name="library_search_hint">Búsqueda por título o autor</string>
 
+    <!-- BookActivity -->
+    <string name="book_toolbar">Información del libro</string>
+    <string name="book_image_content_description">Portada del libro</string>
+    <string name="book_title">Título</string>
+    <string name="book_author">Autor</string>
+    <string name="book_language">Idioma</string>
+    <string name="book_content">Contenido</string>
+    <string name="book_summary">Resumen</string>
+    <string name="book_publisher">Editorial</string>
+    <string name="book_publication_year">Año de publicación</string>
+    <string name="book_details_url">Más información</string>
+    <string name="book_categories">Categorías</string>
+
     <!-- ProfileFragment -->
     <string name="profile_btn_password">Cambiar contraseña</string>
 
