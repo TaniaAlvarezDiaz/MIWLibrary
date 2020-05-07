@@ -29,11 +29,6 @@ class MyProfileFragment : Fragment() {
     }
 
     private fun initialize() {
-        profile_btn_password.setOnClickListener {
-            (activity as NavigationActivity).launchFragment(
-                ChangePasswordFragment.newInstance()
-            )
-        }
     }
 
 }

@@ -27,7 +27,7 @@
         <item name="android:textSize">@dimen/dim_14_sp</item>
         <item name="android:layout_marginTop">@dimen/dim_20</item>
         <item name="android:layout_marginBottom">@dimen/dim_20</item>
-        <item name="android:background">@drawable/edit_text_border</item>
+        <item name="android:background">@drawable/components_border</item>
         <item name="android:padding">@dimen/dim_10</item>
     </style>
 

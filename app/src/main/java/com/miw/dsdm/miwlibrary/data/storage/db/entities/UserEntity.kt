@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
 
 object UserTable {
-    const val TABLE_NAME = "User"
+    const val TABLE_NAME = "Book"
     const val ID = "id"
     const val NAME = "name"
     const val SURNAME = "surname"

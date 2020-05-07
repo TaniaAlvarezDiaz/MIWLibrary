@@ -11,13 +11,15 @@ import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.model.Book
 import kotlinx.android.synthetic.main.library_card_item.view.*
 
-class LibraryAdapter(val items: List<Book>, val itemClick: (Book) -> Unit) :
+class LibraryAdapter(val items: List<Book>, val categoryId: Long, val itemClick: (Book) -> Unit) :
     RecyclerView.Adapter<LibraryAdapter.ViewHolder>(), Filterable {
 
     var filterList = listOf<Book>()
+    var category = 0L
 
     init {
         filterList = items
+        category = categoryId
     }
 
     class ViewHolder(val cardView: CardView, val itemClick: (Book) -> Unit) :
@@ -28,10 +30,11 @@ class LibraryAdapter(val items: List<Book>, val itemClick: (Book) -> Unit) :
                     Glide.with(itemView).load(imagePath).into(itemView.library_card_item_image)
                 itemView.library_card_item_title.text = title
                 itemView.library_card_item_author.text = author
-                itemView.library_card_item_description.text = description
-                itemView.library_card_item_favorite.setImageResource(
+                itemView.library_card_item_summary.text = summary
+                //TODO review
+                /*itemView.library_card_item_favorite.setImageResource(
                     if (favorite) R.drawable.ic_favorites_selected else R.drawable.ic_favorites_unselected
-                )
+                )*/
 
                 itemView.setOnClickListener { itemClick(this) }
             }
@@ -54,10 +57,11 @@ class LibraryAdapter(val items: List<Book>, val itemClick: (Book) -> Unit) :
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val valSearch = constraint.toString()
-                filterList = if (valSearch.isEmpty()) items else filterByTitleOrAuthor(
-                    valSearch
-                        .toLowerCase()
-                )
+                //Filter by title or author
+                filterList = if (valSearch.isEmpty()) items else filterByTitleOrAuthor(valSearch.toLowerCase())
+                //Filter by category
+                if (category != 0L) filterList = filterByCategory()
+
                 val filterResults = FilterResults()
                 filterResults.values = filterList
                 return filterResults
@@ -82,6 +86,19 @@ class LibraryAdapter(val items: List<Book>, val itemClick: (Book) -> Unit) :
                 ) {
                     res.add(this)
                 }
+            }
+        }
+        return res
+    }
+
+    /**
+     * Function that filters books by category
+     */
+    private fun filterByCategory(): List<Book> {
+        val res = mutableListOf<Book>()
+        for (book in filterList) {
+            with(book) {
+                if (!categories.isNullOrEmpty() && categories.any { it.id == category }) res.add(this)
             }
         }
         return res

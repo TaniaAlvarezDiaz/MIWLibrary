@@ -15,12 +15,15 @@ interface UserDao {
     @Delete
     fun delete(user: UserEntity)
 
+    @Query("DELETE FROM ${UserTable.TABLE_NAME}")
+    fun clear()
+
     @Query("SELECT * FROM ${UserTable.TABLE_NAME}")
     fun getAll(): List<UserEntity>
 
     @Query("SELECT * FROM ${UserTable.TABLE_NAME} WHERE ${UserTable.ID} IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<UserEntity>
 
-    @Query("SELECT * FROM ${UserTable.TABLE_NAME} WHERE ${UserTable.EMAIL} LIKE :email")
+    @Query("SELECT * FROM ${UserTable.TABLE_NAME} WHERE ${UserTable.EMAIL} LIKE :email LIMIT 1")
     fun findByEmail(email: String): UserEntity
 }
