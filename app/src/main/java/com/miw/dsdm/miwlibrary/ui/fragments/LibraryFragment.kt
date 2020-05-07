@@ -1,20 +1,20 @@
 package com.miw.dsdm.miwlibrary.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.SearchView.OnQueryTextListener
-import android.widget.SpinnerAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.data.server.RetrofitBuilder
 import com.miw.dsdm.miwlibrary.model.Book
 import com.miw.dsdm.miwlibrary.model.Category
+import com.miw.dsdm.miwlibrary.ui.activities.BookActivity
 import com.miw.dsdm.miwlibrary.ui.adapters.LibraryAdapter
 import kotlinx.android.synthetic.main.fragment_library.*
 import kotlinx.coroutines.Dispatchers
@@ -62,7 +62,7 @@ class LibraryFragment : Fragment() {
 
         //Adapter
         adapter = LibraryAdapter(items, category) {
-            //TODO complete, go to BookDetail
+            goToBookInformation(it)
         }
 
         //SearchView
@@ -74,6 +74,16 @@ class LibraryFragment : Fragment() {
         //Recycler
         library_recycler_view.layoutManager = LinearLayoutManager(activity)
         library_recycler_view.adapter = adapter
+    }
+
+    /**
+     * Function to go to the screen that shows the information of the book that is passed by parameter
+     */
+    private fun goToBookInformation(book: Book) {
+        val intent = Intent(activity, BookActivity::class.java).apply {
+            putExtra(BookActivity.BOOK, book)
+        }
+        startActivity(intent)
     }
 
     /**
