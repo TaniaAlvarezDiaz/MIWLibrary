@@ -4,11 +4,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.miw.dsdm.miwlibrary.LibraryApp
-import com.miw.dsdm.miwlibrary.data.storage.db.dao.UserDao
-import com.miw.dsdm.miwlibrary.data.storage.db.entities.UserEntity
+import com.miw.dsdm.miwlibrary.data.storage.db.dao.*
+import com.miw.dsdm.miwlibrary.data.storage.db.entities.*
 
-@Database(entities = [UserEntity::class], version = 1)
+@Database(entities = [BookCategoryEntity::class, BookEntity::class, CategoryEntity::class, FavoriteEntity::class, UserEntity::class], version = 1)
 abstract class LibraryDatabase : RoomDatabase() {
+    abstract fun bookCategoryDao(): BookCategoryDao
+    abstract fun bookDao(): BookDao
+    abstract fun categoryDao(): CategoryDao
+    abstract fun favoriteDao(): FavoriteDao
     abstract fun userDao(): UserDao
 
     companion object {

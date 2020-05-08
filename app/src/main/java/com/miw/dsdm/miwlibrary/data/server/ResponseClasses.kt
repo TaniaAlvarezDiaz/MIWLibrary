@@ -14,6 +14,6 @@ data class BookResponse(
     @SerializedName("publisher_date") val publicationYear: String,
     val language: String,
     @SerializedName("url_details") val detailsUrl: String,
-    @SerializedName("cover") val imageUrl: String,
+    @SerializedName("cover") val imagePath: String,
     val categories: List<CategoryResponse>
 )

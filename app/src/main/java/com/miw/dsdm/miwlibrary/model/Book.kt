@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class Book(
+    val id: Long,
     val imagePath: String,
     val title: String,
     val author: String,
@@ -13,10 +14,11 @@ class Book(
     val publisher: String,
     val publicationYear: String,
     val detailsUrl: String,
-    val categories: List<Category>
+    var categories: List<Category>
 ) : Parcelable {
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeLong(id)
         parcel.writeString(imagePath)
         parcel.writeString(title)
         parcel.writeString(author)
@@ -34,6 +36,7 @@ class Book(
     companion object CREATOR : Parcelable.Creator<Book> {
 
         override fun createFromParcel(parcel: Parcel): Book {
+            val id = parcel.readLong()
             val imagePath = parcel.readString() ?: ""
             val title = parcel.readString() ?: ""
             val author = parcel.readString() ?: ""
@@ -46,7 +49,7 @@ class Book(
             val categories = emptyList<Category>()
             parcel.readList(categories, Category.javaClass.classLoader)
 
-            return Book(imagePath, title, author, language, content, summary, publisher, publicationYear, detailsUrl, categories)
+            return Book(id, imagePath, title, author, language, content, summary, publisher, publicationYear, detailsUrl, categories)
         }
 
         override fun newArray(size: Int): Array<Book?> = arrayOfNulls(size)

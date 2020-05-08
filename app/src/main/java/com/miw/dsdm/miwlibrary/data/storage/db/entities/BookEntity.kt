@@ -21,6 +21,7 @@ object BookTable {
 
 @Entity(tableName = BookTable.TABLE_NAME)
 data class BookEntity(
+    @ColumnInfo(name = BookTable.ID) @PrimaryKey val id: Long,
     @ColumnInfo(name = BookTable.IMAGE) @NotNull val imagePath: String,
     @ColumnInfo(name = BookTable.TITLE) @NotNull val title: String,
     @ColumnInfo(name = BookTable.AUTHOR) @NotNull val author: String,
@@ -30,8 +31,4 @@ data class BookEntity(
     @ColumnInfo(name = BookTable.PUBLISHER) @NotNull val publisher: String,
     @ColumnInfo(name = BookTable.PUBLICATION_YEAR) @NotNull val publicationYear: String,
     @ColumnInfo(name = BookTable.DETAILS_URL) @NotNull val detailsUrl: String
-) {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = BookTable.ID)
-    var id: Long = 0
-}
+)

@@ -14,10 +14,7 @@ object CategoryTable {
 
 @Entity(tableName = CategoryTable.TABLE_NAME)
 data class CategoryEntity(
+    @ColumnInfo(name = CategoryTable.ID) @PrimaryKey val id: Long,
     @ColumnInfo(name = CategoryTable.NAME) @NotNull val name: String,
     @ColumnInfo(name = CategoryTable.NICENAME) @NotNull val nicename: String
-) {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = CategoryTable.ID)
-    var id: Long = 0
-}
+)

@@ -7,7 +7,7 @@ import com.miw.dsdm.miwlibrary.data.storage.db.entities.CategoryTable
 @Dao
 interface CategoryDao {
     @Insert
-    fun insert(user: CategoryEntity): Long
+    fun insert(category: CategoryEntity): Long
 
     @Update
     fun update(vararg category: CategoryEntity)
