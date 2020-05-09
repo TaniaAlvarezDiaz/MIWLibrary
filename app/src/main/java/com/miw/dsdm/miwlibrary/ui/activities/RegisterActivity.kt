@@ -2,11 +2,19 @@ package com.miw.dsdm.miwlibrary.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.miw.dsdm.miwlibrary.R
+import com.miw.dsdm.miwlibrary.data.storage.db.repositories.UserRepository
+import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.model.User
 import com.miw.dsdm.miwlibrary.utils.PASSWORD_MINIMUN_LENGTH
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import splitties.alertdialog.appcompat.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -42,15 +50,13 @@ class RegisterActivity : AppCompatActivity() {
 
         val user = User(name, surname, email, password1, password2)
 
-        if (validate(user)) {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
+        validate(user)
     }
 
     /**
      * Function to validate user data
      */
-    private fun validate(user: User): Boolean {
+    private fun validate(user: User){
         var valid = true
 
         //Campos obligatorios sin rellenar
@@ -95,7 +101,36 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         //Llamada a bbdd para buscar el email
+        if(valid){
+           registerUser(user)
+        }
+    }
 
-        return valid
+    private fun registerUser(user: User){
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = User.requestUserByEmail(user.email)
+            if (result == null) {
+                val reg = User.requestSaveUser(user)
+                if(reg){
+                    withContext(Dispatchers.Main) {
+                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                    }
+                }
+                else{
+                    Toast.makeText(this@RegisterActivity, "REGISTRO INCORRECTO", Toast.LENGTH_SHORT).show()
+                }
+            }
+            else{
+                alertDialog {
+                    message = "USUARIO EXISTE"//getString(R.string.navigation_sign_out_alert_message)
+                    okButton {
+
+                    }
+                }.onShow {
+                    setCancelable(false)
+                }.show()
+               // Toast.makeText(this@RegisterActivity, "EL USUARIO EXISTE", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

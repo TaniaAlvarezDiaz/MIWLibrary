@@ -8,4 +8,5 @@ interface CategoryDataSource {
      * Function to get all book categories
      */
     fun requestAllCategories(): List<Category>
+
 }

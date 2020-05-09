@@ -26,7 +26,7 @@ object CategoryDataMapper {
      * Function to convert the category passed by parameter to a database object (categoryEntity)
      */
     private fun convertCategoryFromDomain(category: Category) = CategoryEntity(
-        category.name, category.nicename
+        category.id, category.name, category.nicename
     )
 
 

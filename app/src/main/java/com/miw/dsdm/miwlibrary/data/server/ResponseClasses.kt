@@ -2,7 +2,10 @@ package com.miw.dsdm.miwlibrary.data.server
 
 import com.google.gson.annotations.SerializedName
 
-data class CategoryResponse(@SerializedName("category_id") val id: Long, val name: String, val nicename: String)
+data class CategoryResponse(
+    @SerializedName("category_id") val id: Long,
+    val name: String,
+    val nicename: String)
 
 data class BookResponse(
     @SerializedName("ID") val id: String,
@@ -17,3 +20,10 @@ data class BookResponse(
     @SerializedName("cover") val imagePath: String,
     val categories: List<CategoryResponse>
 )
+
+data class UserResponse(
+    @SerializedName("user_id") val id: Long,
+    val name: String,
+    val surname: String,
+    val email: String,
+    val password: String)

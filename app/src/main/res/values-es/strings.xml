@@ -55,5 +55,6 @@
     <string name="change_password_old_password">Antigua contraseña</string>
     <string name="change_password_new_password">Nueva contraseña</string>
     <string name="change_password_new_password_repeat">Repetir nueva contraseña</string>
+    <string name="change_password_toolbar">Cambiar Contraseña</string>
 
 </resources>
