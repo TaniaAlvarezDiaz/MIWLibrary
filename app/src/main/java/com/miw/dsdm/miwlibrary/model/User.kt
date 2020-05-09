@@ -6,7 +6,7 @@ import com.miw.dsdm.miwlibrary.data.datasources.UserProvider
 
 data class User(
     val name: String, val surname: String,
-    val email: String, val password: String,
+    val email: String, var password: String,
     val repeatPassword: String
 ) : Parcelable {
 
@@ -36,8 +36,16 @@ data class User(
             return UserProvider.findByEmail(email)
         }
 
+        fun requestUserByEmailAndPassword(email: String, password: String): User? {
+            return UserProvider.findByEmailAndPassword(email, password)
+        }
+
         fun requestSaveUser(user: User): Boolean {
             return UserProvider.saveUser(user)
+        }
+
+        fun requestUpdateUser(user: User): Boolean {
+            return UserProvider.updateUser(user)
         }
     }
 }

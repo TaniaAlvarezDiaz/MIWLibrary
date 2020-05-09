@@ -34,5 +34,13 @@ class UserRepository : UserDataSource {
         return true
     }
 
+    /**
+     * Function to update a user
+     */
+    fun requestUpdateUser(user: User): Boolean{
+        val userDb = UserDataMapper.convertFromDomain(user)
+        userDao.update(userDb)
+        return true
+    }
 
 }

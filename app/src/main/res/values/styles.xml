@@ -35,6 +35,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/dim_16_sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextViewInfoStyle" parent="@style/TextViewLabelStyle">
@@ -42,5 +43,13 @@
         <item name="android:layout_marginTop">@dimen/dim_20</item>
         <item name="android:layout_marginBottom">@dimen/dim_20</item>
     </style>
+
+    <style name="dialog" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">@string/loading</item>
+        <item name="DialogSpotColor">@color/colorPrimary</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
 
 </resources>

@@ -43,7 +43,7 @@ class BookRepository : BookDataSource {
     /**
      * Function to get the user's favorite books that is passed by parameter
      */
-    fun requestFavoritesBooksByUser(userId: Long): List<Book> {
+    fun requestFavoritesBooksByUser(userEmail: String): List<Book> {
         TODO("Not yet implemented")
     }
 

@@ -1,5 +1,6 @@
 package com.miw.dsdm.miwlibrary.ui.activities
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -9,6 +10,7 @@ import com.miw.dsdm.miwlibrary.data.storage.db.repositories.UserRepository
 import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.model.User
 import com.miw.dsdm.miwlibrary.utils.PASSWORD_MINIMUN_LENGTH
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +19,8 @@ import kotlinx.coroutines.withContext
 import splitties.alertdialog.appcompat.*
 
 class RegisterActivity : AppCompatActivity() {
+
+    lateinit var loadingDialog : AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,7 @@ class RegisterActivity : AppCompatActivity() {
      * Function to initialize components
      */
     private fun initialize() {
+        loadingDialog = SpotsDialog.Builder().setContext(this).setTheme(R.style.dialog).setCancelable(false).build()
         setSupportActionBar(register_toolbar)
         register_btn_register.setOnClickListener { onSubmit() }
     }
@@ -100,37 +105,53 @@ class RegisterActivity : AppCompatActivity() {
             register_repeat_password_value.error = null
         }
 
-        //Llamada a bbdd para buscar el email
         if(valid){
            registerUser(user)
         }
     }
 
+    /**
+     * It checks whether a user exists.
+     * If there is an error message is displayed to the user, otherwise the user is logged
+     */
     private fun registerUser(user: User){
+        loadingDialog.show()
         CoroutineScope(Dispatchers.IO).launch {
             val result = User.requestUserByEmail(user.email)
             if (result == null) {
                 val reg = User.requestSaveUser(user)
                 if(reg){
                     withContext(Dispatchers.Main) {
+                        loadingDialog.dismiss()
                         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     }
                 }
                 else{
-                    Toast.makeText(this@RegisterActivity, "REGISTRO INCORRECTO", Toast.LENGTH_SHORT).show()
+                    withContext(Dispatchers.Main) {
+                        loadingDialog.dismiss()
+                        showDialog(getString(R.string.register_user_exist_alert_title),
+                            getString(R.string.error_password_length))
+                    }
                 }
             }
             else{
-                alertDialog {
-                    message = "USUARIO EXISTE"//getString(R.string.navigation_sign_out_alert_message)
-                    okButton {
-
-                    }
-                }.onShow {
-                    setCancelable(false)
-                }.show()
-               // Toast.makeText(this@RegisterActivity, "EL USUARIO EXISTE", Toast.LENGTH_SHORT).show()
+                withContext(Dispatchers.Main) {
+                   loadingDialog.dismiss()
+                   showDialog(getString(R.string.register_user_exist_alert_title),
+                       getString(R.string.register_user_exist_alert_message))
+                }
             }
         }
+    }
+
+    private fun showDialog(t: String, m: String){
+        alertDialog {
+            title = t
+            message = m
+            okButton {
+            }
+        }.onShow {
+            setCancelable(false)
+        }.show()
     }
 }

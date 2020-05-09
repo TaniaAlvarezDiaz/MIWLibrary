@@ -28,4 +28,8 @@ object UserProvider {
         return UserRepository().requestSaveNewUser(user)
     }
 
+    fun updateUser(user : User): Boolean{
+        return UserRepository().requestUpdateUser(user)
+    }
+
 }
