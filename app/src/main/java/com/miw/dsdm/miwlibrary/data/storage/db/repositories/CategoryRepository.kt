@@ -11,6 +11,9 @@ class CategoryRepository : CategoryDataSource {
     private val bookCategoryDao = LibraryDatabase.instance.bookCategoryDao()
     private val categoryDao: CategoryDao = LibraryDatabase.instance.categoryDao()
 
+    /**
+     * Function to get all book categories
+     */
     override fun requestAllCategories(): List<Category> {
         //Get all categories
         val categoriesDb = categoryDao.getAll()

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.model.User
+import com.miw.dsdm.miwlibrary.utils.Validations
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.CoroutineScope
@@ -17,12 +18,12 @@ import splitties.alertdialog.appcompat.*
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var loadingDialog : AlertDialog
+    private lateinit var loadingDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        
+
         initialize()
     }
 
@@ -48,12 +49,15 @@ class LoginActivity : AppCompatActivity() {
     /**
      * Function to validate user data
      */
-    private fun validate(email: String, password: String){
+    private fun validate(email: String, password: String) {
         var valid = true
 
         //Campos obligatorios sin rellenar
         if (email.isEmpty()) {
             login_username_value.error = getString(R.string.error_empty_field)
+            valid = false
+        } else if (!Validations.validateEmail(email)) {
+            login_username_value.error = getString(R.string.error_email_invalid)
             valid = false
         } else {
             login_username_value.error = null
@@ -66,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
             login_password_value.error = null
         }
 
-        if(valid){
+        if (valid) {
             loginUser(email, password)
         }
 
@@ -76,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
      * It checks whether a user exists.
      * If the credentials are correct, the main page is displayed, but the error is displayed
      */
-    private fun loginUser(email: String, password: String){
+    private fun loginUser(email: String, password: String) {
         loadingDialog.show()
         CoroutineScope(Dispatchers.IO).launch {
             val result = User.requestUserByEmailAndPassword(email, password)
@@ -86,23 +90,26 @@ class LoginActivity : AppCompatActivity() {
                     Settings(this@LoginActivity).userLoggedIn = email
                     startActivity(Intent(this@LoginActivity, NavigationActivity::class.java))
                 }
-            }
-            else{
+            } else {
                 withContext(Dispatchers.Main) {
                     loadingDialog.dismiss()
-                    showDialog("",
-                        getString(R.string.login_error_alert_message))
+                    showDialog(
+                        getString(R.string.login_error_alert_title),
+                        getString(R.string.login_error_alert_message)
+                    )
                 }
             }
         }
     }
 
-    private fun showDialog(t: String, m: String){
+    /**
+     * Function to show an alert dialog
+     */
+    private fun showDialog(t: String, m: String) {
         alertDialog {
             title = t
             message = m
-            okButton {
-            }
+            okButton {}
         }.onShow {
             setCancelable(false)
         }.show()

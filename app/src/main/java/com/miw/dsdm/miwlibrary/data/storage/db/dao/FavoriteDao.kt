@@ -25,8 +25,7 @@ interface FavoriteDao {
         "SELECT * FROM ${BookTable.TABLE_NAME} " +
                 "INNER JOIN ${FavoriteTable.TABLE_NAME} " +
                 "ON ${BookTable.ID} LIKE ${FavoriteTable.BOOK_ID} " +
-                "WHERE ${FavoriteTable.USER_EMAIL} LIKE :userId"
+                "WHERE ${FavoriteTable.USER_EMAIL} LIKE :userEmail"
     )
-    fun getFavoritesBooksByUser(userId: Long): List<BookEntity>
-
+    fun getFavoritesBooksByUser(userEmail: String): List<BookEntity>
 }

@@ -3,13 +3,11 @@ package com.miw.dsdm.miwlibrary.ui.activities
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.miw.dsdm.miwlibrary.R
-import com.miw.dsdm.miwlibrary.data.storage.db.repositories.UserRepository
-import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.model.User
 import com.miw.dsdm.miwlibrary.utils.PASSWORD_MINIMUN_LENGTH
+import com.miw.dsdm.miwlibrary.utils.Validations
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +18,7 @@ import splitties.alertdialog.appcompat.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    lateinit var loadingDialog : AlertDialog
+    private lateinit var loadingDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
     /**
      * Function to validate user data
      */
-    private fun validate(user: User){
+    private fun validate(user: User) {
         var valid = true
 
         //Campos obligatorios sin rellenar
@@ -81,6 +79,9 @@ class RegisterActivity : AppCompatActivity() {
 
         if (user.email.isEmpty()) {
             register_email_value.error = getString(R.string.error_empty_field)
+            valid = false
+        } else if (!Validations.validateEmail(user.email)) {
+            register_email_value.error = getString(R.string.error_email_invalid)
             valid = false
         } else {
             register_email_value.error = null
@@ -105,8 +106,8 @@ class RegisterActivity : AppCompatActivity() {
             register_repeat_password_value.error = null
         }
 
-        if(valid){
-           registerUser(user)
+        if (valid) {
+            registerUser(user)
         }
     }
 
@@ -114,41 +115,41 @@ class RegisterActivity : AppCompatActivity() {
      * It checks whether a user exists.
      * If there is an error message is displayed to the user, otherwise the user is logged
      */
-    private fun registerUser(user: User){
+    private fun registerUser(user: User) {
         loadingDialog.show()
         CoroutineScope(Dispatchers.IO).launch {
             val result = User.requestUserByEmail(user.email)
             if (result == null) {
                 val reg = User.requestSaveUser(user)
-                if(reg){
+                if (reg) {
                     withContext(Dispatchers.Main) {
                         loadingDialog.dismiss()
-                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                        showDialog("", getString(R.string.register_user_register_correctly_message), false)
                     }
-                }
-                else{
+                } else {
                     withContext(Dispatchers.Main) {
                         loadingDialog.dismiss()
-                        showDialog(getString(R.string.register_user_exist_alert_title),
-                            getString(R.string.error_password_length))
+                        showDialog(getString(R.string.register_user_exist_alert_title), getString(R.string.error_password_length), true)
                     }
                 }
-            }
-            else{
+            } else {
                 withContext(Dispatchers.Main) {
-                   loadingDialog.dismiss()
-                   showDialog(getString(R.string.register_user_exist_alert_title),
-                       getString(R.string.register_user_exist_alert_message))
+                    loadingDialog.dismiss()
+                    showDialog(getString(R.string.register_user_exist_alert_title), getString(R.string.register_user_exist_alert_message), true)
                 }
             }
         }
     }
 
-    private fun showDialog(t: String, m: String){
+    /**
+     * Function to show an alert dialog
+     */
+    private fun showDialog(t: String, m: String, error: Boolean) {
         alertDialog {
             title = t
             message = m
             okButton {
+                if (!error) startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
             }
         }.onShow {
             setCancelable(false)

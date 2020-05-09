@@ -29,5 +29,4 @@ object CategoryDataMapper {
         category.id, category.name, category.nicename
     )
 
-
 }

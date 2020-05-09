@@ -25,5 +25,5 @@ interface UserDao {
     fun findByEmail(email: String): UserEntity
 
     @Query("SELECT * FROM ${UserTable.TABLE_NAME} WHERE ${UserTable.EMAIL} LIKE :email AND ${UserTable.PASSWORD} LIKE :password")
-    fun findByEmailAndPasswrod(email: String, password: String): UserEntity
+    fun findByEmailAndPassword(email: String, password: String): UserEntity
 }

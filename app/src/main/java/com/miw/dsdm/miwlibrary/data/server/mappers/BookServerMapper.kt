@@ -14,8 +14,7 @@ object BookServerMapper {
      * Function to convert the book passed by parameter to a domain object (book)
      */
     private fun convertBookToDomain(book: BookResponse) = Book(
-        book.id.toLong(),
-        book.imagePath, book.title, book.author, book.language, book.content, book.summary,
+        book.id.toLong(), book.imagePath, book.title, book.author, book.language, book.content, book.summary,
         book.publisher, book.publicationYear, book.detailsUrl, CategoryServerMapper.convertToDomain(book.categories)
     )
 

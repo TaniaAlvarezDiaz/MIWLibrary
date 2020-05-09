@@ -20,10 +20,3 @@ data class BookResponse(
     @SerializedName("cover") val imagePath: String,
     val categories: List<CategoryResponse>
 )
-
-data class UserResponse(
-    @SerializedName("user_id") val id: Long,
-    val name: String,
-    val surname: String,
-    val email: String,
-    val password: String)

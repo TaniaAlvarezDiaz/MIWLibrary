@@ -6,6 +6,7 @@ import com.miw.dsdm.miwlibrary.data.storage.db.entities.BookTable
 
 @Dao
 interface BookDao {
+
     @Insert
     fun insert(book: BookEntity): Long
 
@@ -20,4 +21,5 @@ interface BookDao {
 
     @Query("SELECT * FROM ${BookTable.TABLE_NAME}")
     fun getAll(): List<BookEntity>
+
 }

@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull
 
 object FavoriteTable {
     const val TABLE_NAME = "Favorite"
-    const val USER_EMAIL = "userId"
+    const val USER_EMAIL = "userEmail"
     const val BOOK_ID = "bookId"
 }
 
@@ -19,15 +19,17 @@ object FavoriteTable {
             entity = UserEntity::class,
             parentColumns = [UserTable.EMAIL],
             childColumns = [FavoriteTable.USER_EMAIL],
-            onDelete = ForeignKey.CASCADE),
+            onDelete = ForeignKey.CASCADE
+        ),
         ForeignKey(
             entity = BookEntity::class,
             parentColumns = [BookTable.ID],
             childColumns = [FavoriteTable.BOOK_ID],
-            onDelete = ForeignKey.CASCADE)
+            onDelete = ForeignKey.CASCADE
+        )
     ]
 )
 data class FavoriteEntity(
-    @ColumnInfo(name = FavoriteTable.USER_EMAIL) @NotNull val userId: Long,
+    @ColumnInfo(name = FavoriteTable.USER_EMAIL) @NotNull val userEmail: String,
     @ColumnInfo(name = FavoriteTable.BOOK_ID) @NotNull val bookId: Long
 )

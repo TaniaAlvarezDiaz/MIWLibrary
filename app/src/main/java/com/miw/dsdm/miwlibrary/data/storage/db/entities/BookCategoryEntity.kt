@@ -18,12 +18,14 @@ object BookCategoryTable {
             entity = BookEntity::class,
             parentColumns = [BookTable.ID],
             childColumns = [BookCategoryTable.BOOK_ID],
-            onDelete = androidx.room.ForeignKey.CASCADE),
+            onDelete = androidx.room.ForeignKey.CASCADE
+        ),
         androidx.room.ForeignKey(
             entity = CategoryEntity::class,
             parentColumns = [CategoryTable.ID],
             childColumns = [BookCategoryTable.CATEGORY_ID],
-            onDelete = androidx.room.ForeignKey.CASCADE)
+            onDelete = androidx.room.ForeignKey.CASCADE
+        )
     ]
 )
 data class BookCategoryEntity(

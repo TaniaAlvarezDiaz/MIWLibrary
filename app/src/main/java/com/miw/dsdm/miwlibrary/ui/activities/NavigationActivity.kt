@@ -1,5 +1,6 @@
 package com.miw.dsdm.miwlibrary.ui.activities
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -16,6 +17,7 @@ import splitties.alertdialog.appcompat.*
 
 class NavigationActivity : AppCompatActivity() {
 
+    lateinit var loadingDialog: AlertDialog
     private lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -135,8 +137,9 @@ class NavigationActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-            cancelButton { dialog -> dialog.cancel() }
+            cancelButton { }
         }.onShow {
+            positiveButton.text = getString(R.string.common_yes)
             setCancelable(false)
         }.show()
     }

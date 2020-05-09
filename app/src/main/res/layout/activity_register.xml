@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activities.RegisterActivity">
+    tools:context=".ui.activities.RegisterActivity"
+    android:focusableInTouchMode="true">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/register_toolbar"
@@ -68,8 +69,7 @@
                 android:id="@+id/register_password_value"
                 style="@style/EditTextStyle"
                 android:hint="@string/common_password"
-                android:inputType="textPassword"
-                android:labelFor="@id/register_password" />
+                android:inputType="textPassword" />
 
             <TextView
                 android:id="@+id/register_repeat_password"
@@ -80,13 +80,11 @@
                 android:id="@+id/register_repeat_password_value"
                 style="@style/EditTextStyle"
                 android:hint="@string/common_repeat_password"
-                android:inputType="textPassword"
-                android:labelFor="@id/register_repeat_password" />
+                android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/register_btn_register"
                 style="@style/ButtonStyle"
-                android:onClick="onSubmit"
                 android:text="@string/register_btn_register" />
 
         </LinearLayout>

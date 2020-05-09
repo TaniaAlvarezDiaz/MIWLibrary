@@ -2,32 +2,34 @@
     <string name="app_name">MIWLibrary</string>
 
     <!-- Errors -->
+    <string name="error_email_invalid">Invalid email</string>
     <string name="error_empty_field">Empty field</string>
-    <string name="error_passwords_different">Passwords must be the same</string>
-    <string name="error_password_length">Password must be at least 8 characters</string>
-
+    <string name="error_passwords_different">Passwords must be the same.</string>
+    <string name="error_password_length">Password must be at least 8 characters.</string>
+    <string name="error_generic">An error has occurred, please try again.</string>
 
     <!-- Common -->
     <string name="common_name">Name</string>
     <string name="common_surname">Surname</string>
     <string name="common_email">Email</string>
     <string name="common_password">Password</string>
-    <string name="common_repeat_password">Repeat Password</string>
+    <string name="common_repeat_password">Repeat password</string>
     <string name="common_changePassword">Change password</string>
-    <string name="error_alert_message">An error has occurred, please try again.</string>
-    <string name="loading">Loading.</string>
+    <string name="common_loading">Loading...</string>
+    <string name="common_yes">Yes</string>
 
     <!-- LoginActivity -->
     <string name="login_btn_login">Login</string>
     <string name="login_text_register_sign_up">Sign up</string>
-    <string name="login_error_alert_message">Wrong credentials</string>
     <string name="login_error_alert_title">Login error</string>
+    <string name="login_error_alert_message">Wrong credentials.</string>
 
     <!-- RegisterActivity -->
     <string name="register_toolbar">Register</string>
     <string name="register_btn_register">Sign in</string>
-    <string name="register_user_exist_alert_message">User already exists</string>
     <string name="register_user_exist_alert_title">Register error</string>
+    <string name="register_user_exist_alert_message">User already exists.</string>
+    <string name="register_user_register_correctly_message">Registered user successfully.</string>
 
     <!-- NavigationActivity -->
     <string name="navigation_library_option">Library</string>
@@ -57,18 +59,15 @@
     <!-- ProfileFragment -->
     <string name="profile_btn_password">Change password</string>
     <string name="profile_error_alert_title">Load user error</string>
-    <string name="profile_error_alert_message">An error occurred while loading user data. Please try again</string>
-
+    <string name="profile_error_alert_message">An error occurred while loading user data. Please try again.</string>
 
     <!-- ChangePasswordFragment -->
     <string name="change_password_old_password">Old password</string>
     <string name="change_password_new_password">New password</string>
     <string name="change_password_new_password_repeat">Repeat new password</string>
-    <string name="change_password_toolbar">Change Password</string>
+    <string name="change_password_toolbar">Change password</string>
     <string name="change_password_error_alert_title">Change password error</string>
-    <string name="change_password_error_alert_message">An error occurred while changing password. Please try again</string>
-    <string name="change_password_alert_message">Password has been successfully changed</string>
-
-
+    <string name="change_password_error_alert_message">An error occurred while changing password. Please try again.</string>
+    <string name="change_password_alert_message">Password has been successfully changed.</string>
 
 </resources>

@@ -1,17 +1,14 @@
 package com.miw.dsdm.miwlibrary.ui.activities
 
 import android.app.AlertDialog
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.model.User
 import com.miw.dsdm.miwlibrary.utils.PASSWORD_MINIMUN_LENGTH
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_change_password.*
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,7 +17,7 @@ import splitties.alertdialog.appcompat.*
 
 class ChangePasswordActivity : AppCompatActivity() {
 
-    lateinit var loadingDialog : AlertDialog
+    private lateinit var loadingDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +53,7 @@ class ChangePasswordActivity : AppCompatActivity() {
     /**
      * Function to validate user data
      */
-    private fun validate(oldPassword: String, newPassword: String, repeatNewPassword: String){
+    private fun validate(oldPassword: String, newPassword: String, repeatNewPassword: String) {
         var valid = true
 
         if (oldPassword.isEmpty()) {
@@ -85,14 +82,14 @@ class ChangePasswordActivity : AppCompatActivity() {
             change_password_new_repeat_value.error = null
         }
 
-        if(!newPassword.equals(repeatNewPassword)){
+        if (!newPassword.equals(repeatNewPassword)) {
             change_password_new_repeat_value.error = getString(R.string.error_passwords_different)
             valid = false
         } else {
             change_password_new_repeat_value.error = null
         }
 
-        if(valid){
+        if (valid) {
             changePassword(newPassword, oldPassword)
         }
 
@@ -101,39 +98,46 @@ class ChangePasswordActivity : AppCompatActivity() {
     /**
      * Change the user's password
      */
-    private fun changePassword(newPassword: String, oldPassword: String){
+    private fun changePassword(newPassword: String, oldPassword: String) {
         loadingDialog.show()
         CoroutineScope(Dispatchers.IO).launch {
             val result = Settings(this@ChangePasswordActivity).userLoggedIn?.let { User.requestUserByEmailAndPassword(it, oldPassword) }
             if (result != null) {
                 result.password = newPassword
-                val update =  User.requestUpdateUser(result)
-                if(update){
+                val update = User.requestUpdateUser(result)
+                if (update) {
                     withContext(Dispatchers.Main) {
                         loadingDialog.dismiss()
-                        showDialog("",
-                            getString(R.string.change_password_alert_message))
+                        showDialog(
+                            "",
+                            getString(R.string.change_password_alert_message)
+                        )
                     }
-                }
-                else{
+                } else {
                     withContext(Dispatchers.Main) {
                         loadingDialog.dismiss()
-                        showDialog(getString(R.string.change_password_error_alert_title),
-                            getString(R.string.error_alert_message))
+                        showDialog(
+                            getString(R.string.change_password_error_alert_title),
+                            getString(R.string.error_generic)
+                        )
                     }
                 }
-            }
-            else{
+            } else {
                 withContext(Dispatchers.Main) {
                     loadingDialog.dismiss()
-                    showDialog("",
-                        getString(R.string.login_error_alert_message))
+                    showDialog(
+                        "",
+                        getString(R.string.login_error_alert_message)
+                    )
                 }
             }
         }
     }
 
-    private fun showDialog(t: String, m: String){
+    /**
+     * Function to show an alert dialog
+     */
+    private fun showDialog(t: String, m: String) {
         alertDialog {
             title = t
             message = m

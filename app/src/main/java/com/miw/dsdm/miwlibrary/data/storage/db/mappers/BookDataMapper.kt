@@ -18,8 +18,14 @@ object BookDataMapper {
         book.publisher, book.publicationYear, book.detailsUrl, emptyList()
     )
 
+    /**
+     * Function to convert the books of the list passed by parameter into objects that can be stored in the database
+     */
     fun convertFromDomain(books: List<Book>) = books.map { convertBookFromDomain(it) }
 
+    /**
+     * Function to convert the book passed by parameter to a database object (bookEntity)
+     */
     private fun convertBookFromDomain(book: Book) = BookEntity(book.id,
         book.imagePath, book.title, book.author, book.language, book.content, book.summary,
         book.publisher, book.publicationYear, book.detailsUrl

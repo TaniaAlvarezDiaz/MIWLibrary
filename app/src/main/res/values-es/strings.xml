@@ -3,9 +3,11 @@
     <string name="app_name">MIWLibrary</string>
 
     <!-- Errors -->
+    <string name="error_email_invalid">Email inválido</string>
     <string name="error_empty_field">Campo vacío</string>
-    <string name="error_passwords_different">Las contraseñas deben ser iguales</string>
-    <string name="error_password_length">La contraseña debe tener al menos 8 caracteres</string>
+    <string name="error_passwords_different">Las contraseñas deben ser iguales.</string>
+    <string name="error_password_length">La contraseña debe tener al menos 8 caracteres.</string>
+    <string name="error_generic">Se ha producido un error, por favor inténtelo de nuevo.</string>
 
     <!-- Common -->
     <string name="common_name">Nombre</string>
@@ -14,20 +16,21 @@
     <string name="common_password">Contraseña</string>
     <string name="common_repeat_password">Repetir contraseña</string>
     <string name="common_changePassword">Cambiar contraseña</string>
-    <string name="error_alert_message">Se ha producido un error, por favor inténtelo de nuevo.</string>
-    <string name="loading">Loading.</string>
+    <string name="common_loading">Cargando...</string>
+    <string name="common_yes">Sí</string>
 
     <!-- LoginActivity -->
     <string name="login_btn_login">Iniciar sesión</string>
     <string name="login_text_register_sign_up">Regístrate</string>
-    <string name="login_error_alert_message">Credenciales incorrectos</string>
-    <string name="login_error_alert_title">Login error</string>
+    <string name="login_error_alert_title">Error de inicio de sesión</string>
+    <string name="login_error_alert_message">Credenciales incorrectos.</string>
 
     <!-- RegisterActivity -->
     <string name="register_toolbar">Registro</string>
     <string name="register_btn_register">Registrarse</string>
-    <string name="register_user_exist_alert_message">Usuario ya registrado</string>
     <string name="register_user_exist_alert_title">Error en el registro</string>
+    <string name="register_user_exist_alert_message">Usuario ya registrado.</string>
+    <string name="register_user_register_correctly_message">Usuario registrado correctamente.</string>
 
     <!-- NavigationActivity -->
     <string name="navigation_library_option">Biblioteca</string>
@@ -57,16 +60,15 @@
     <!-- ProfileFragment -->
     <string name="profile_btn_password">Cambiar contraseña</string>
     <string name="profile_error_alert_title">Error al cargar los datos</string>
-    <string name="profile_error_alert_message">Se ha producido un error al cargar los datos del usuario. Por favor, inténtelo de nuevo</string>
+    <string name="profile_error_alert_message">Se ha producido un error al cargar los datos del usuario. Por favor, inténtelo de nuevo.</string>
 
     <!-- Change Password -->
     <string name="change_password_old_password">Antigua contraseña</string>
     <string name="change_password_new_password">Nueva contraseña</string>
     <string name="change_password_new_password_repeat">Repetir nueva contraseña</string>
-    <string name="change_password_toolbar">Cambiar Contraseña</string>
+    <string name="change_password_toolbar">Cambiar contraseña</string>
     <string name="change_password_error_alert_title">Error al cargar la contraseña</string>
-    <string name="change_password_error_alert_message">Se ha producido un error al cambiar la contraseña. Por favor, inténtelo de nuevo</string>
-    <string name="change_password_alert_message">La contraseña se ha modificado correctamente</string>
-
+    <string name="change_password_error_alert_message">Se ha producido un error al cambiar la contraseña. Por favor, inténtelo de nuevo.</string>
+    <string name="change_password_alert_message">La contraseña se ha modificado correctamente.</string>
 
 </resources>

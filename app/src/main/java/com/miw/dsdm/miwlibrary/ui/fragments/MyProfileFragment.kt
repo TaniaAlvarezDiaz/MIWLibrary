@@ -1,6 +1,5 @@
 package com.miw.dsdm.miwlibrary.ui.fragments
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.model.User
 import com.miw.dsdm.miwlibrary.ui.activities.ChangePasswordActivity
-import com.miw.dsdm.miwlibrary.ui.activities.NavigationActivity
 import kotlinx.android.synthetic.main.fragment_my_profile.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,6 +36,9 @@ class MyProfileFragment : Fragment() {
         initialize()
     }
 
+    /**
+     * Function to initialize components
+     */
     private fun initialize() {
         loadUser()
         profile_btn_password.setOnClickListener { startActivity(Intent(activity, ChangePasswordActivity::class.java)) }
@@ -47,7 +48,7 @@ class MyProfileFragment : Fragment() {
      * It checks whether a user exists.
      * If the credentials are correct, the main page is displayed, but the error is displayed
      */
-    private fun loadUser(){
+    private fun loadUser() {
         CoroutineScope(Dispatchers.IO).launch {
             val result = activity?.let { Settings(it).userLoggedIn }?.let { User.requestUserByEmail(it) }
             if (result != null) {
@@ -56,17 +57,21 @@ class MyProfileFragment : Fragment() {
                     profile_surname_value.text = result.surname
                     profile_email_value.text = result.email
                 }
-            }
-            else{
+            } else {
                 withContext(Dispatchers.Main) {
-                    showDialog(getString(R.string.profile_error_alert_title),
-                        getString(R.string.profile_error_alert_message))
+                    showDialog(
+                        getString(R.string.profile_error_alert_title),
+                        getString(R.string.profile_error_alert_message)
+                    )
                 }
             }
         }
     }
 
-    private fun showDialog(t: String, m: String){
+    /**
+     * Function to show an alert dialog
+     */
+    private fun showDialog(t: String, m: String) {
         activity?.alertDialog {
             title = t
             message = m

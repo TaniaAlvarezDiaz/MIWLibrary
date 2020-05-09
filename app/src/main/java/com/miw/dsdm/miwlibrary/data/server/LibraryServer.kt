@@ -14,11 +14,18 @@ class LibraryServer: BookDataSource, CategoryDataSource {
     private val bookRepository: BookRepository = BookRepository()
     private val categoryRepository: CategoryRepository = CategoryRepository()
 
+    /**
+     * Function to get all books
+     */
     override fun requestAllBooks(): List<Book> {
         TODO("Not yet implemented")
+        //TODO call service, then save books in database
         //val response = RetrofitBuilder.apiService.getBooks(NUM_BOOKS_FROM_SERVER)
     }
 
+    /**
+     * Function to get all book categories
+     */
     override fun requestAllCategories(): List<Category> {
         TODO("Not yet implemented")
     }
