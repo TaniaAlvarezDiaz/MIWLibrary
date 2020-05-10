@@ -3,6 +3,9 @@ package com.miw.dsdm.miwlibrary.ui.activities
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
+import android.view.View
+import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.data.storage.local.Settings
@@ -15,6 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import splitties.alertdialog.appcompat.*
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -44,6 +48,19 @@ class LoginActivity : AppCompatActivity() {
         val password = login_password_value.text.toString()
 
         validate(login, password)
+    }
+
+    /**
+     * Function to show or not show the password
+     */
+    fun onCheckboxClicked(view: View) {
+        if (view is CheckBox) {
+            val checked: Boolean = view.isChecked
+            if(checked)
+                login_password_value.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD)
+            else
+                login_password_value.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        }
     }
 
     /**
