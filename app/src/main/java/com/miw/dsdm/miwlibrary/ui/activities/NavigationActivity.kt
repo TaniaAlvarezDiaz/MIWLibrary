@@ -151,24 +151,25 @@ class NavigationActivity : AppCompatActivity() {
      * Function to launch one of the fragments from the bottom navigation
      */
     private fun launchFragmentBottomNavigation(id: Int, leftMenu: Boolean) {
-        if (leftMenu) navigation_bottom_menu.selectedItemId = id
-        else navigation_left_menu.setCheckedItem(id)
+        if (leftMenu)
+            navigation_bottom_menu.selectedItemId = id
+        else {
+            val fragment = when (id) {
+                R.id.navigation_library -> {
+                    LibraryFragment.newInstance()
+                }
+                R.id.navigation_favorites -> {
+                    FavoritesFragment.newInstance()
+                }
+                else -> {
+                    MyProfileFragment.newInstance()
+                }
+            }
 
-        val fragment = when (id) {
-            R.id.navigation_library -> {
-                LibraryFragment.newInstance()
-            }
-            R.id.navigation_favorites -> {
-                FavoritesFragment.newInstance()
-            }
-            else -> {
-                MyProfileFragment.newInstance()
-            }
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(fragment_container.id, fragment)
+            fragmentTransaction.commit()
         }
-
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(fragment_container.id, fragment)
-        fragmentTransaction.commit()
     }
 
 }
