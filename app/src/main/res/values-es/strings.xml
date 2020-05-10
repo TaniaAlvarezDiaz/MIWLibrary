@@ -24,6 +24,7 @@
     <string name="login_text_register_sign_up">Regístrate</string>
     <string name="login_error_alert_title">Error de inicio de sesión</string>
     <string name="login_error_alert_message">Credenciales incorrectos.</string>
+    <string name="login_show_password">Mostrar contraseña</string>
 
     <!-- RegisterActivity -->
     <string name="register_toolbar">Registro</string>

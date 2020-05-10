@@ -23,6 +23,7 @@
     <string name="login_text_register_sign_up">Sign up</string>
     <string name="login_error_alert_title">Login error</string>
     <string name="login_error_alert_message">Wrong credentials.</string>
+    <string name="login_show_password">Show password</string>
 
     <!-- RegisterActivity -->
     <string name="register_toolbar">Register</string>
