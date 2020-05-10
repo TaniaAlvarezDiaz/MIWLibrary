@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.model.User
-import com.miw.dsdm.miwlibrary.utils.PASSWORD_MINIMUN_LENGTH
+import com.miw.dsdm.miwlibrary.utils.PASSWORD_MINIMUM_LENGTH
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.coroutines.CoroutineScope
@@ -67,7 +67,7 @@ class ChangePasswordActivity : AppCompatActivity() {
             change_password_new_value.error = getString(R.string.error_empty_field)
             valid = false
         } else {
-            if (change_password_new_value.length() < PASSWORD_MINIMUN_LENGTH) {
+            if (change_password_new_value.length() < PASSWORD_MINIMUM_LENGTH) {
                 change_password_new_value.error = getString(R.string.error_password_length)
                 valid = false
             } else {

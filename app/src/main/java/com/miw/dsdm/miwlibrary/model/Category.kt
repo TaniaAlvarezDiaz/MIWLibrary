@@ -2,6 +2,7 @@ package com.miw.dsdm.miwlibrary.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.miw.dsdm.miwlibrary.data.datasources.CategoryProvider
 
 class Category(val id: Long, val name: String, val nicename: String) : Parcelable {
 
@@ -22,5 +23,7 @@ class Category(val id: Long, val name: String, val nicename: String) : Parcelabl
         }
 
         override fun newArray(size: Int): Array<Category?> = arrayOfNulls(size)
+
+        fun requestAllCategories() = CategoryProvider.requestAllCategories()
     }
 }

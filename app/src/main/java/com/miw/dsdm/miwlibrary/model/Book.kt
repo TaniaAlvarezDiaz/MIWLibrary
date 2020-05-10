@@ -2,6 +2,7 @@ package com.miw.dsdm.miwlibrary.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.miw.dsdm.miwlibrary.data.datasources.BookProvider
 
 class Book(
     val id: Long,
@@ -53,6 +54,8 @@ class Book(
         }
 
         override fun newArray(size: Int): Array<Book?> = arrayOfNulls(size)
+
+        fun requestAllBooks() : List<Book> = BookProvider.requestAllBooks()
     }
 
 }

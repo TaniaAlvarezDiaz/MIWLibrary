@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.model.User
-import com.miw.dsdm.miwlibrary.utils.PASSWORD_MINIMUN_LENGTH
+import com.miw.dsdm.miwlibrary.utils.PASSWORD_MINIMUM_LENGTH
 import com.miw.dsdm.miwlibrary.utils.Validations
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_register.*
@@ -91,7 +91,7 @@ class RegisterActivity : AppCompatActivity() {
             register_password_value.error = getString(R.string.error_empty_field)
             valid = false
         } else {
-            if (user.password.length < PASSWORD_MINIMUN_LENGTH) {
+            if (user.password.length < PASSWORD_MINIMUM_LENGTH) {
                 register_password_value.error = getString(R.string.error_password_length)
                 valid = false
             } else {

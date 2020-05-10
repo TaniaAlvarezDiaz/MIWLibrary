@@ -32,20 +32,12 @@ data class User(
 
         override fun newArray(size: Int): Array<User?> = arrayOfNulls(size)
 
-        fun requestUserByEmail(email: String): User? {
-            return UserProvider.findByEmail(email)
-        }
+        fun requestUserByEmail(email: String): User? = UserProvider.findByEmail(email)
 
-        fun requestUserByEmailAndPassword(email: String, password: String): User? {
-            return UserProvider.findByEmailAndPassword(email, password)
-        }
+        fun requestUserByEmailAndPassword(email: String, password: String): User? = UserProvider.findByEmailAndPassword(email, password)
 
-        fun requestSaveUser(user: User): Boolean {
-            return UserProvider.saveUser(user)
-        }
+        fun requestSaveUser(user: User): Boolean = UserProvider.saveUser(user)
 
-        fun requestUpdateUser(user: User): Boolean {
-            return UserProvider.updateUser(user)
-        }
+        fun requestUpdateUser(user: User): Boolean = UserProvider.updateUser(user)
     }
 }

@@ -11,23 +11,21 @@ import android.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.miw.dsdm.miwlibrary.R
-import com.miw.dsdm.miwlibrary.data.server.RetrofitBuilder
 import com.miw.dsdm.miwlibrary.model.Book
 import com.miw.dsdm.miwlibrary.model.Category
 import com.miw.dsdm.miwlibrary.ui.activities.BookActivity
+import com.miw.dsdm.miwlibrary.ui.activities.NavigationActivity
 import com.miw.dsdm.miwlibrary.ui.adapters.LibraryAdapter
 import kotlinx.android.synthetic.main.fragment_library.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class LibraryFragment : Fragment() {
     companion object {
         fun newInstance(): LibraryFragment = LibraryFragment()
     }
 
-    private lateinit var adapter: LibraryAdapter
-    private var categories = emptyList<Category>()
+    private lateinit var libraryAdapter: LibraryAdapter
+    private var categories : List<Category> = emptyList()
     private var category = 0L
 
     override fun onCreateView(
@@ -52,7 +50,7 @@ class LibraryFragment : Fragment() {
             Book(null,"Libro 4", "Autor 4", "Descripcion 4", false),
             Book(null,"Libro 5", "Autor 5", "Descripcion 5", true)
         )*/
-        val items = emptyList<Book>()
+       // val items = emptyList<Book>()
 
         //SwipeRefreshLayout
        library_swipe_refresh_layout.setOnRefreshListener {
@@ -61,19 +59,21 @@ class LibraryFragment : Fragment() {
        }
 
         //Adapter
-        adapter = LibraryAdapter(items, category) {
+        /*adapter = LibraryAdapter(items, category) {
             goToBookInformation(it)
-        }
+        }*/
 
         //SearchView
        initializeSearchView()
 
         //Spinner
-        initializeCategoriesSpinner()
+        //initializeCategoriesSpinner()
 
         //Recycler
         library_recycler_view.layoutManager = LinearLayoutManager(activity)
-        library_recycler_view.adapter = adapter
+    /*    library_recycler_view.adapter = adapter*/
+
+        getBooksCategories()
     }
 
     /**
@@ -98,7 +98,7 @@ class LibraryFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter.filter(newText)
+                libraryAdapter.filter.filter(newText)
                 return false
             }
 
@@ -124,13 +124,37 @@ class LibraryFragment : Fragment() {
      * Function to get books categories
      */
     private fun getBooksCategories() {
-        runBlocking (Dispatchers.Default) {
-            withContext(Dispatchers.IO) {
-               val res = RetrofitBuilder.apiService.getAllCategories()
-                if (res.isSuccessful) {
-                    res.body()
-                }else {
-                    println(res.code())
+        (activity as NavigationActivity).loadingDialog.show()
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = Category.requestAllCategories()
+            if (!result.isNullOrEmpty()) {
+                categories = result
+                initializeCategoriesSpinner()
+                getBooks()
+            } else {
+                withContext(Dispatchers.Main) {
+                    (activity as NavigationActivity).loadingDialog.dismiss()
+                }
+            }
+        }
+    }
+
+    /**
+     * Function to get books
+     */
+    private fun getBooks() {
+        (activity as NavigationActivity).loadingDialog.show()
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = Book.requestAllBooks()
+            if (!result.isNullOrEmpty()) {
+                //Configure adapter
+                libraryAdapter = LibraryAdapter(result, category) { goToBookInformation(it) }
+                //Assign adapter to recycler
+                library_recycler_view.adapter = libraryAdapter
+            } else {
+                withContext(Dispatchers.Main) {
+                    (activity as NavigationActivity).loadingDialog.dismiss()
+                    //TODO show text NO RESULTS
                 }
             }
         }

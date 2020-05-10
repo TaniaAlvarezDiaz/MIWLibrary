@@ -12,6 +12,7 @@ import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.ui.fragments.FavoritesFragment
 import com.miw.dsdm.miwlibrary.ui.fragments.LibraryFragment
 import com.miw.dsdm.miwlibrary.ui.fragments.MyProfileFragment
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_navigation.*
 import splitties.alertdialog.appcompat.*
 
@@ -47,6 +48,8 @@ class NavigationActivity : AppCompatActivity() {
      * Function to initialize components
      */
     private fun initialize() {
+        loadingDialog = SpotsDialog.Builder().setContext(this).setTheme(R.style.dialog).setCancelable(false).build()
+
         //Toolbar
         initializeToolbar()
 
