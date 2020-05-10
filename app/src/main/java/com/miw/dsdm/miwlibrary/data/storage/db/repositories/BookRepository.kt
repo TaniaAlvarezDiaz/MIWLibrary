@@ -35,9 +35,10 @@ class BookRepository : BookDataSource {
         booksDb.forEach { bookDao.insert(it) }
         //Save books categories
         books.forEach { b ->
-            b.categories.forEach {
-                bookCategoryDao.insert(BookCategoryEntity(b.id, it.id))
-            }
+            if (!b.categories.isNullOrEmpty())
+                b.categories.forEach {
+                    bookCategoryDao.insert(BookCategoryEntity(b.id, it.id))
+                }
         }
     }
 

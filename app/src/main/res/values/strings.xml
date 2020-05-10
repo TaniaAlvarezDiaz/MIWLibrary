@@ -41,7 +41,8 @@
     <string name="navigation_open_drawer">Open</string>
 
     <!-- LibraryFragment -->
-    <string name="library_search_hint">Search by title or author</string>
+    <string name="library_filter_title_author">Filter by title or author</string>
+    <string name="library_filter_categories">Filter by category</string>
 
     <!-- BookActivity -->
     <string name="book_toolbar">Book information</string>

@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.miw.dsdm.miwlibrary.data.datasources.BookDataSource
 import com.miw.dsdm.miwlibrary.data.datasources.CategoryDataSource
+import com.miw.dsdm.miwlibrary.data.server.mappers.BookServerMapper
 import com.miw.dsdm.miwlibrary.data.server.mappers.CategoryServerMapper
 import com.miw.dsdm.miwlibrary.data.storage.db.repositories.BookRepository
 import com.miw.dsdm.miwlibrary.data.storage.db.repositories.CategoryRepository
@@ -28,7 +29,10 @@ class LibraryServer: BookDataSource, CategoryDataSource {
         //Convert into domain object
         val booksType = object : TypeToken<List<BookResponse>>() {}.type
         val result = Gson().fromJson<List<BookResponse>>(booksJsonStr, booksType)
-        return emptyList()
+        val books = BookServerMapper.convertToDomain(result)
+        //Save books in database
+        bookRepository.saveBooks(books)
+        return books
     }
 
     /**

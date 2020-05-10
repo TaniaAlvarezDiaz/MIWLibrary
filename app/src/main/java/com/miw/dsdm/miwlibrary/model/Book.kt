@@ -6,15 +6,15 @@ import com.miw.dsdm.miwlibrary.data.datasources.BookProvider
 
 class Book(
     val id: Long,
-    val imagePath: String,
-    val title: String,
-    val author: String,
-    val language: String,
-    val content: String,
-    val summary: String,
-    val publisher: String,
-    val publicationYear: String,
-    val detailsUrl: String,
+    val imagePath: String?,
+    val title: String?,
+    val author: String?,
+    val language: String?,
+    val content: String?,
+    val summary: String?,
+    val publisher: String?,
+    val publicationYear: String?,
+    val detailsUrl: String?,
     var categories: List<Category>
 ) : Parcelable {
 

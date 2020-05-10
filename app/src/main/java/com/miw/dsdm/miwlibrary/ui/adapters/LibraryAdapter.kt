@@ -11,11 +11,11 @@ import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.model.Book
 import kotlinx.android.synthetic.main.library_card_item.view.*
 
-class LibraryAdapter(val items: List<Book>, val categoryId: Long, val itemClick: (Book) -> Unit) :
+class LibraryAdapter(val items: MutableList<Book>, val categoryId: Long, val itemClick: (Book) -> Unit) :
     RecyclerView.Adapter<LibraryAdapter.ViewHolder>(), Filterable {
 
-    var filterList = listOf<Book>()
-    var category = 0L
+    private var filterList = mutableListOf<Book>()
+    var category : Long = 0L
 
     init {
         filterList = items
@@ -58,7 +58,7 @@ class LibraryAdapter(val items: List<Book>, val categoryId: Long, val itemClick:
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val valSearch = constraint.toString()
                 //Filter by title or author
-                filterList = if (valSearch.isEmpty()) items else filterByTitleOrAuthor(valSearch.toLowerCase())
+                filterList = (if (valSearch.isEmpty()) items else filterByTitleOrAuthor(valSearch.toLowerCase())) as MutableList<Book>
                 //Filter by category
                 if (category != 0L) filterList = filterByCategory()
 
@@ -68,7 +68,7 @@ class LibraryAdapter(val items: List<Book>, val categoryId: Long, val itemClick:
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                filterList = results?.values as List<Book>
+                filterList = results?.values as MutableList<Book>
                 notifyDataSetChanged()
             }
         }
@@ -94,7 +94,7 @@ class LibraryAdapter(val items: List<Book>, val categoryId: Long, val itemClick:
     /**
      * Function that filters books by category
      */
-    private fun filterByCategory(): List<Book> {
+    private fun filterByCategory(): MutableList<Book> {
         val res = mutableListOf<Book>()
         for (book in filterList) {
             with(book) {

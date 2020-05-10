@@ -6,7 +6,7 @@ import com.miw.dsdm.miwlibrary.model.Category
 
 object CategoryProvider {
 
-    private val categoryRepository : CategoryRepository = CategoryRepository()
+    private val categoryRepository: CategoryRepository = CategoryRepository()
 
     private val SOURCES = listOf(categoryRepository, LibraryServer())
 
@@ -20,13 +20,6 @@ object CategoryProvider {
             if (!res.isNullOrEmpty()) break
         }
         return res
-    }
-
-    /**
-     * Function to save the categories that are passed by parameter in the database
-     */
-    fun saveCategories(categories: List<Category>) {
-        categoryRepository.saveCategories(categories)
     }
 
     /**

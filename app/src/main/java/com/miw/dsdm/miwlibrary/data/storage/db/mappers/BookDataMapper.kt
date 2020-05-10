@@ -13,7 +13,8 @@ object BookDataMapper {
     /**
      * Function to convert the book passed by parameter to a domain object (book)
      */
-    private fun convertBookToDomain(book: BookEntity) = Book(book.id,
+    private fun convertBookToDomain(book: BookEntity) = Book(
+        book.id,
         book.imagePath, book.title, book.author, book.language, book.content, book.summary,
         book.publisher, book.publicationYear, book.detailsUrl, emptyList()
     )
@@ -26,10 +27,17 @@ object BookDataMapper {
     /**
      * Function to convert the book passed by parameter to a database object (bookEntity)
      */
-    private fun convertBookFromDomain(book: Book) = BookEntity(book.id,
-        book.imagePath, book.title, book.author, book.language, book.content, book.summary,
-        book.publisher, book.publicationYear, book.detailsUrl
-    )
-
-
+    private fun convertBookFromDomain(book: Book) =
+        BookEntity(
+            book.id,
+            book.imagePath ?: "",
+            book.title ?: "",
+            book.author ?: "",
+            book.language ?: "",
+            book.content ?: "",
+            book.summary ?: "",
+            book.publisher ?: "",
+            book.publicationYear ?: "",
+            book.detailsUrl ?: ""
+        )
 }
