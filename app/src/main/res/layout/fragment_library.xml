@@ -32,7 +32,7 @@
             android:layout_marginTop="@dimen/dim_20"
             android:layout_marginBottom="@dimen/dim_20"
             android:background="@drawable/components_border"
-            android:spinnerMode="dropdown"/>
+            android:spinnerMode="dropdown" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/library_recycler_view"
