@@ -6,7 +6,7 @@ import com.miw.dsdm.miwlibrary.model.Book
 
 object BookProvider {
 
-    private val bookRepository : BookRepository = BookRepository()
+    private val bookRepository: BookRepository = BookRepository()
 
     private val SOURCES = listOf(bookRepository, LibraryServer())
 
@@ -42,6 +42,11 @@ object BookProvider {
     fun deleteFavoriteBook(userEmail: String, book: Book) {
         bookRepository.deleteFavoriteBook(userEmail, book.id)
     }
+
+    /**
+     * Function to know if book that is passed by parameter is favorite
+     */
+    fun isFavoriteBook(userEmail: String, book: Book): Boolean = bookRepository.isFavoriteBook(userEmail, book.id)
 
     /**
      * Function to get the user's favorite books that is passed by parameter

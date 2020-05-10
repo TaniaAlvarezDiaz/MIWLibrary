@@ -28,4 +28,10 @@ interface FavoriteDao {
                 "WHERE ${FavoriteTable.USER_EMAIL} LIKE :userEmail"
     )
     fun getFavoritesBooksByUser(userEmail: String): List<BookEntity>
+
+    @Query("SELECT * FROM ${FavoriteTable.TABLE_NAME} " +
+            "WHERE ${FavoriteTable.USER_EMAIL} LIKE :userEmail " +
+            "AND ${FavoriteTable.BOOK_ID} LIKE :bookId LIMIT 1"
+    )
+    fun existsFavoriteBook(userEmail: String, bookId: Long) : FavoriteEntity
 }

@@ -17,6 +17,7 @@
     <string name="common_changePassword">Change password</string>
     <string name="common_loading">Loading...</string>
     <string name="common_yes">Yes</string>
+    <string name="common_no_results">No results</string>
 
     <!-- LoginActivity -->
     <string name="login_btn_login">Login</string>
@@ -57,6 +58,10 @@
     <string name="book_publication_year">Year of publication</string>
     <string name="book_details_url">More information</string>
     <string name="book_categories">Categories</string>
+    <string name="book_btn_add_favorites">Add to favorites</string>
+    <string name="book_btn_delete_favorites">Delete from favorites</string>
+    <string name="book_delete_favorite_alert_message">Book successfully deleted from favorites.</string>
+    <string name="book_save_favorite_alert_message">Book successfully added to favorites.</string>
 
     <!-- ProfileFragment -->
     <string name="profile_btn_password">Change password</string>

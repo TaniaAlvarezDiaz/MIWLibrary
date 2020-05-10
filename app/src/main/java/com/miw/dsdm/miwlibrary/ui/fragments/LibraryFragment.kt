@@ -11,6 +11,7 @@ import android.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.miw.dsdm.miwlibrary.R
+import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.model.Book
 import com.miw.dsdm.miwlibrary.model.Category
 import com.miw.dsdm.miwlibrary.ui.activities.BookActivity
@@ -29,9 +30,11 @@ class LibraryFragment : Fragment() {
 
     private lateinit var libraryAdapter: LibraryAdapter
 
-    private var books : MutableList<Book> = mutableListOf()
+    private var books: MutableList<Book> = mutableListOf()
+    private var searchText: String = ""
     private var category = 0L
-    private var categories : MutableList<Category> = mutableListOf()
+    private var categories: MutableList<Category> = mutableListOf()
+    private var userEmail: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,21 +49,15 @@ class LibraryFragment : Fragment() {
     }
 
     private fun initialize() {
-        //SwipeRefreshLayout
-       library_swipe_refresh_layout.setOnRefreshListener {
-           //TODO get books from server
-           library_swipe_refresh_layout.isRefreshing = true
-       }
+        //User logged
+        userEmail = activity?.let { Settings(it).userLoggedIn.toString() }.toString()
 
         //SearchView
-       initializeSearchView()
-
-        //Spinner
-       //initializeCategoriesSpinner()
+        initializeSearchView()
 
         //Recycler adapter
         libraryAdapter = LibraryAdapter(books, category) {
-            goToBookInformation(it)
+          goToBookInformation(it)
         }
 
         //Recycler
@@ -70,7 +67,7 @@ class LibraryFragment : Fragment() {
         //Get categories from database or server
         getBooksCategories()
         //Get books
-        getBooks()
+//        getBooks()
     }
 
     /**
@@ -85,6 +82,7 @@ class LibraryFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                searchText = newText.toString()
                 libraryAdapter.filter.filter(newText)
                 return false
             }
@@ -95,9 +93,10 @@ class LibraryFragment : Fragment() {
      * Function to initialize categories spinner
      */
     private fun initializeCategoriesSpinner() {
-        var categoriesNames : MutableList<String> = mutableListOf()
+        var categoriesNames: MutableList<String> = mutableListOf()
         //Add categories from database or server
-        categoriesNames.addAll( categories.map { it.nicename })
+        categories.sortBy { it.name }
+        categoriesNames.addAll(categories.map { it.name })
         //Add category empty
         categoriesNames.add(0, getString(R.string.library_filter_categories))
 
@@ -110,9 +109,10 @@ class LibraryFragment : Fragment() {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position != 0) {
-                    category = categories[position-1].id
-                    updateLibraryAdapter(null)
+                    category = categories[position - 1].id
+                    updateLibraryAdapter()
                 }
+                libraryAdapter.filter.filter(searchText)
             }
         }
     }
@@ -130,15 +130,12 @@ class LibraryFragment : Fragment() {
     /**
      * Function to update library adapter
      */
-    private fun updateLibraryAdapter(bookLst: List<Book>?) {
+    private fun updateLibraryAdapter() {
         //Update books
-        if (!bookLst.isNullOrEmpty()) {
-            libraryAdapter.items.clear()
-            libraryAdapter.items.addAll(bookLst)
+        libraryAdapter = LibraryAdapter(books, category) {
+            goToBookInformation(it)
         }
-        //Update category
-        libraryAdapter.category = category
-        libraryAdapter.notifyDataSetChanged()
+        library_recycler_view.adapter = libraryAdapter
     }
 
     /**
@@ -153,6 +150,7 @@ class LibraryFragment : Fragment() {
                     (activity as NavigationActivity).loadingDialog.dismiss()
                     categories.addAll(result)
                     initializeCategoriesSpinner()
+                    getBooks()
                 }
             } else {
                 withContext(Dispatchers.Main) {
@@ -172,15 +170,14 @@ class LibraryFragment : Fragment() {
             if (!result.isNullOrEmpty()) {
                 withContext(Dispatchers.Main) {
                     (activity as NavigationActivity).loadingDialog.dismiss()
-                    updateLibraryAdapter(result)
+                    books.addAll(result)
+                    updateLibraryAdapter()
                 }
             } else {
                 withContext(Dispatchers.Main) {
                     (activity as NavigationActivity).loadingDialog.dismiss()
-                    //TODO show text NO RESULTS
                 }
             }
         }
     }
-
 }

@@ -116,6 +116,10 @@
                 android:textColor="@drawable/text_view_style"
                 android:clickable="true"
                 android:focusable="true"/>
+
+            <Button
+                android:id="@+id/book_btn_add_favorites"
+                style="@style/ButtonStyle" />
             
         </LinearLayout>
         

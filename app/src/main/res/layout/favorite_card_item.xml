@@ -20,7 +20,7 @@
         android:padding="@dimen/dim_card_view_layout_padding">
 
         <ImageView
-            android:id="@+id/library_card_item_image"
+            android:id="@+id/favorite_card_item_image"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:maxWidth="@dimen/dim_card_view_book_image_max_width"
@@ -33,7 +33,7 @@
             android:src="@drawable/book_cover_not_available"/>
 
         <LinearLayout
-            android:id="@+id/library_card_item_linear_info"
+            android:id="@+id/favorite_card_item_linear_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -41,11 +41,11 @@
             android:padding="@dimen/dim_10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/library_card_item_image"
+            app:layout_constraintStart_toEndOf="@+id/favorite_card_item_image"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/library_card_item_title"
+                android:id="@+id/favorite_card_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/dim_16_sp"
@@ -55,7 +55,7 @@
                 android:ellipsize="end"/>
 
             <TextView
-                android:id="@+id/library_card_item_author"
+                android:id="@+id/favorite_card_item_author"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorHint"
@@ -64,7 +64,7 @@
                 android:ellipsize="end"/>
 
             <TextView
-                android:id="@+id/library_card_item_summary"
+                android:id="@+id/favorite_card_item_summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/dim_14_sp"
@@ -72,6 +72,18 @@
                 android:ellipsize="end"/>
 
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/favorite_card_item_delete"
+            android:layout_width="@dimen/dim_card_view_favorite_image_width_height"
+            android:layout_height="@dimen/dim_card_view_favorite_image_width_height"
+            android:layout_marginTop="@dimen/dim_card_view_favorite_image_margin_top"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_delete"
+            tools:ignore="ContentDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -11,8 +11,10 @@ import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.model.Book
 import kotlinx.android.synthetic.main.library_card_item.view.*
 
-class LibraryAdapter(val items: MutableList<Book>, val categoryId: Long, val itemClick: (Book) -> Unit) :
-    RecyclerView.Adapter<LibraryAdapter.ViewHolder>(), Filterable {
+class LibraryAdapter(
+    val items: MutableList<Book>, val categoryId: Long, val
+    itemClick: (Book) -> Unit
+) : RecyclerView.Adapter<LibraryAdapter.ViewHolder>(), Filterable {
 
     private var filterList = mutableListOf<Book>()
     var category : Long = 0L
@@ -31,10 +33,6 @@ class LibraryAdapter(val items: MutableList<Book>, val categoryId: Long, val ite
                 itemView.library_card_item_title.text = title
                 itemView.library_card_item_author.text = author
                 itemView.library_card_item_summary.text = summary
-                //TODO review
-                /*itemView.library_card_item_favorite.setImageResource(
-                    if (favorite) R.drawable.ic_favorites_selected else R.drawable.ic_favorites_unselected
-                )*/
 
                 itemView.setOnClickListener { itemClick(this) }
             }
@@ -103,4 +101,5 @@ class LibraryAdapter(val items: MutableList<Book>, val categoryId: Long, val ite
         }
         return res
     }
+
 }

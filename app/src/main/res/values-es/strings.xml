@@ -18,6 +18,7 @@
     <string name="common_changePassword">Cambiar contraseña</string>
     <string name="common_loading">Cargando...</string>
     <string name="common_yes">Sí</string>
+    <string name="common_no_results">No hay resultados</string>
 
     <!-- LoginActivity -->
     <string name="login_btn_login">Iniciar sesión</string>
@@ -58,6 +59,10 @@
     <string name="book_publication_year">Año de publicación</string>
     <string name="book_details_url">Más información</string>
     <string name="book_categories">Categorías</string>
+    <string name="book_btn_add_favorites">Añadir a favoritos</string>
+    <string name="book_btn_delete_favorites">Borrar de favoritos</string>
+    <string name="book_delete_favorite_alert_message">Libro eliminado correctamente de favoritos.</string>
+    <string name="book_save_favorite_alert_message">Libro añadido correctamente a favoritos.</string>
 
     <!-- ProfileFragment -->
     <string name="profile_btn_password">Cambiar contraseña</string>

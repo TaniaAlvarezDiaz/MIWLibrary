@@ -37,7 +37,8 @@ class BookRepository : BookDataSource {
         books.forEach { b ->
             if (!b.categories.isNullOrEmpty())
                 b.categories.forEach {
-                    bookCategoryDao.insert(BookCategoryEntity(b.id, it.id))
+                    val bookCategory = BookCategoryEntity(b.id, it.id)
+                    bookCategoryDao.insert(bookCategory)
                 }
         }
     }
@@ -63,6 +64,15 @@ class BookRepository : BookDataSource {
      */
     fun deleteFavoriteBook(userEmail: String, bookId: Long) {
         favoriteDao.delete(FavoriteEntity(userEmail, bookId))
+    }
+
+    /**
+     * Function to know if book that is passed by parameter is favorite
+     */
+    fun isFavoriteBook(userEmail: String, bookId: Long) : Boolean {
+        val favorite = favoriteDao.existsFavoriteBook(userEmail, bookId)
+        if (favorite != null) return true
+        return false
     }
 
     /**

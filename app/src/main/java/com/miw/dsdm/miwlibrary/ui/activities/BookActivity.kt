@@ -1,14 +1,25 @@
 package com.miw.dsdm.miwlibrary.ui.activities
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.miw.dsdm.miwlibrary.R
+import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.model.Book
+import com.miw.dsdm.miwlibrary.model.User
+import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_book.*
+import kotlinx.android.synthetic.main.library_card_item.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import splitties.alertdialog.appcompat.*
 
 class BookActivity : AppCompatActivity() {
 
@@ -16,7 +27,10 @@ class BookActivity : AppCompatActivity() {
         const val BOOK = "BookActivity:book"
     }
 
+    private lateinit var loadingDialog: AlertDialog
     lateinit var book: Book
+    private var userEmail: String = ""
+    private var favorite : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +48,28 @@ class BookActivity : AppCompatActivity() {
      * Function to initialize components
      */
     private fun initialize() {
+        //User logged
+        userEmail =  Settings(this).userLoggedIn.toString()
+
+        //Loading
+        loadingDialog = SpotsDialog.Builder().setContext(this).setTheme(R.style.dialog).setCancelable(false).build()
+
+        //Toolbar
         setSupportActionBar(book_toolbar)
 
         //Get book from Intent
         book = intent.getParcelableExtra(BOOK)
 
         if (book != null) fillFields()
+
+        //Button
+        book_btn_add_favorites.setOnClickListener {
+            if (favorite) deleteFavoriteBook(book)
+            else addFavoriteBook(book)
+        }
+
+        //Check if the book is favorite or not
+        isFavorite()
     }
 
     /**
@@ -47,6 +77,8 @@ class BookActivity : AppCompatActivity() {
      */
     private fun fillFields() {
         with(book) {
+            //Image
+            Glide.with(this@BookActivity).load(imagePath).into(book_image)
             //Title
             showHideComponents(book_title, book_title_value, title)
             //Author
@@ -92,6 +124,77 @@ class BookActivity : AppCompatActivity() {
         val webpage = Uri.parse(if (book.detailsUrl?.substring(0..3) == "http") book.detailsUrl else "http://$this")
         val intent = Intent(Intent.ACTION_VIEW, webpage)
         if (intent.resolveActivity(packageManager) != null) startActivity(intent)
+    }
+
+    /**
+     * Function to check if the book is favorite or not
+     */
+    private fun isFavorite() {
+        loadingDialog.show()
+        CoroutineScope(Dispatchers.IO).launch {
+            val result = Book.isFavoriteBook(userEmail, book)
+            if (result != null) {
+                favorite = result
+                withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
+                    changeButtonName()
+                }
+            } else {
+                withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
+                    changeButtonName()
+                }
+            }
+        }
+    }
+
+    /**
+     * Function to change button name
+     */
+    private fun changeButtonName() {
+        book_btn_add_favorites.text = if (favorite) getString(R.string.book_btn_delete_favorites) else getString(R.string.book_btn_add_favorites)
+    }
+
+    /**
+     * Delete favorite book
+     */
+    fun deleteFavoriteBook(book: Book) {
+        loadingDialog.show()
+        CoroutineScope(Dispatchers.IO).launch {
+            Book.deleteFavoriteBook(userEmail, book)
+            withContext(Dispatchers.Main) {
+                favorite = false
+                loadingDialog.dismiss()
+                showDialog(getString(R.string.book_delete_favorite_alert_message))
+            }
+        }
+    }
+
+    /**
+     * Add favorite book
+     */
+    fun addFavoriteBook(book: Book) {
+        loadingDialog.show()
+        CoroutineScope(Dispatchers.IO).launch {
+            Book.saveFavoriteBook(userEmail, book)
+            withContext(Dispatchers.Main) {
+                favorite = true
+                loadingDialog.dismiss()
+                showDialog(getString(R.string.book_save_favorite_alert_message))
+            }
+        }
+    }
+
+    /**
+     * Function to show an alert dialog
+     */
+    private fun showDialog(m: String) {
+        alertDialog {
+            message = m
+            okButton { changeButtonName() }
+        }.onShow {
+            setCancelable(false)
+        }.show()
     }
 
 }

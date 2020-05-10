@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/library_swipe_refresh_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.LibraryFragment"
+    android:focusableInTouchMode="true">
 
-    <LinearLayout
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/library_search_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.fragments.LibraryFragment"
-        android:focusableInTouchMode="true">
+        android:layout_height="wrap_content"
+        android:background="@drawable/components_border"
+        app:queryBackground="@android:color/transparent"
+        app:iconifiedByDefault="false"
+        app:queryHint="@string/library_filter_title_author"
+        app:searchIcon="@drawable/ic_search"
+        app:closeIcon="@drawable/ic_remove_search" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/library_search_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/components_border"
-            app:queryBackground="@android:color/transparent"
-            app:iconifiedByDefault="false"
-            app:queryHint="@string/library_filter_title_author"
-            app:searchIcon="@drawable/ic_search"
-            app:closeIcon="@drawable/ic_remove_search" />
+    <Spinner
+        android:id="@+id/library_spinner_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dim_20"
+        android:layout_marginBottom="@dimen/dim_20"
+        android:background="@drawable/components_border"
+        android:spinnerMode="dropdown" />
 
-        <Spinner
-            android:id="@+id/library_spinner_categories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dim_20"
-            android:layout_marginBottom="@dimen/dim_20"
-            android:background="@drawable/components_border"
-            android:spinnerMode="dropdown" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/library_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/library_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </LinearLayout>
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

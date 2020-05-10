@@ -3,6 +3,7 @@ package com.miw.dsdm.miwlibrary.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.miw.dsdm.miwlibrary.data.datasources.BookProvider
+import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 
 class Book(
     val id: Long,
@@ -56,6 +57,14 @@ class Book(
         override fun newArray(size: Int): Array<Book?> = arrayOfNulls(size)
 
         fun requestAllBooks() : List<Book> = BookProvider.requestAllBooks()
+
+        fun requestAllFavoritesBooks(userEmail: String) : List<Book> = BookProvider.requestFavoritesBooksByUser(userEmail)
+
+        fun saveFavoriteBook(userEmail: String, book: Book) = BookProvider.saveFavoriteBook(userEmail, book)
+
+        fun deleteFavoriteBook(userEmail: String, book: Book) = BookProvider.deleteFavoriteBook(userEmail, book)
+
+        fun isFavoriteBook(userEmail: String, book: Book) : Boolean = BookProvider.isFavoriteBook(userEmail, book)
     }
 
 }
