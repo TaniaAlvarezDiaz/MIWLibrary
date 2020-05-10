@@ -3,7 +3,6 @@ package com.miw.dsdm.miwlibrary.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.miw.dsdm.miwlibrary.data.datasources.BookProvider
-import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 
 class Book(
     val id: Long,
@@ -15,8 +14,7 @@ class Book(
     val summary: String?,
     val publisher: String?,
     val publicationYear: String?,
-    val detailsUrl: String?,
-    var categories: List<Category>
+    val detailsUrl: String?
 ) : Parcelable {
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -30,7 +28,6 @@ class Book(
         parcel.writeString(publisher)
         parcel.writeString(publicationYear)
         parcel.writeString(detailsUrl)
-        parcel.writeTypedList(categories)
     }
 
     override fun describeContents(): Int = 0
@@ -48,23 +45,21 @@ class Book(
             val publisher = parcel.readString() ?: ""
             val publicationYear = parcel.readString() ?: ""
             val detailsUrl = parcel.readString() ?: ""
-            val categories = emptyList<Category>()
-            parcel.readList(categories, Category.javaClass.classLoader)
 
-            return Book(id, imagePath, title, author, language, content, summary, publisher, publicationYear, detailsUrl, categories)
+            return Book(id, imagePath, title, author, language, content, summary, publisher, publicationYear, detailsUrl)
         }
 
         override fun newArray(size: Int): Array<Book?> = arrayOfNulls(size)
 
-        fun requestAllBooks() : List<Book> = BookProvider.requestAllBooks()
+        fun requestAllBooks(): List<Book> = BookProvider.requestAllBooks()
 
-        fun requestAllFavoritesBooks(userEmail: String) : List<Book> = BookProvider.requestFavoritesBooksByUser(userEmail)
+        fun requestAllFavoritesBooks(userEmail: String): List<Book> = BookProvider.requestFavoritesBooksByUser(userEmail)
 
         fun saveFavoriteBook(userEmail: String, book: Book) = BookProvider.saveFavoriteBook(userEmail, book)
 
         fun deleteFavoriteBook(userEmail: String, book: Book) = BookProvider.deleteFavoriteBook(userEmail, book)
 
-        fun isFavoriteBook(userEmail: String, book: Book) : Boolean = BookProvider.isFavoriteBook(userEmail, book)
+        fun isFavoriteBook(userEmail: String, book: Book): Boolean = BookProvider.isFavoriteBook(userEmail, book)
     }
 
 }

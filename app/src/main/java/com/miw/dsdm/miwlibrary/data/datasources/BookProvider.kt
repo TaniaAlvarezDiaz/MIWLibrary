@@ -23,13 +23,6 @@ object BookProvider {
     }
 
     /**
-     * Function to get the books that contain the category that is passed by parameter
-     */
-    fun requestBooksByCategory(categoryId: Long): List<Book> {
-        return bookRepository.requestBooksByCategory(categoryId)
-    }
-
-    /**
      * Function to save in database the user's favorite book that is passed by parameter
      */
     fun saveFavoriteBook(userEmail: String, book: Book) {

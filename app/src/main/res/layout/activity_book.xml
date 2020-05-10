@@ -83,15 +83,6 @@
                 style="@style/TextViewInfoStyle"/>
 
             <TextView
-                android:id="@+id/book_categories"
-                style="@style/TextViewLabelStyle"
-                android:text="@string/book_categories"/>
-
-            <TextView
-                android:id="@+id/book_categories_value"
-                style="@style/TextViewInfoStyle"/>
-
-            <TextView
                 android:id="@+id/book_summary"
                 style="@style/TextViewLabelStyle"
                 android:text="@string/book_summary"/>

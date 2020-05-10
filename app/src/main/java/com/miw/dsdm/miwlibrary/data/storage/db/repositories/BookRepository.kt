@@ -4,16 +4,13 @@ import com.miw.dsdm.miwlibrary.data.datasources.BookDataSource
 import com.miw.dsdm.miwlibrary.data.storage.db.LibraryDatabase
 import com.miw.dsdm.miwlibrary.data.storage.db.dao.BookDao
 import com.miw.dsdm.miwlibrary.data.storage.db.dao.FavoriteDao
-import com.miw.dsdm.miwlibrary.data.storage.db.entities.BookCategoryEntity
 import com.miw.dsdm.miwlibrary.data.storage.db.entities.BookEntity
 import com.miw.dsdm.miwlibrary.data.storage.db.entities.FavoriteEntity
 import com.miw.dsdm.miwlibrary.data.storage.db.mappers.BookDataMapper
-import com.miw.dsdm.miwlibrary.data.storage.db.mappers.CategoryDataMapper
 import com.miw.dsdm.miwlibrary.model.Book
 
 class BookRepository : BookDataSource {
 
-    private val bookCategoryDao = LibraryDatabase.instance.bookCategoryDao()
     private val favoriteDao: FavoriteDao = LibraryDatabase.instance.favoriteDao()
     private val bookDao: BookDao = LibraryDatabase.instance.bookDao()
 
@@ -33,22 +30,6 @@ class BookRepository : BookDataSource {
         //Save books
         val booksDb = BookDataMapper.convertFromDomain(books)
         booksDb.forEach { bookDao.insert(it) }
-        //Save books categories
-        books.forEach { b ->
-            if (!b.categories.isNullOrEmpty())
-                b.categories.forEach {
-                    val bookCategory = BookCategoryEntity(b.id, it.id)
-                    bookCategoryDao.insert(bookCategory)
-                }
-        }
-    }
-
-    /**
-     * Function to get the books that contain the category that is passed by parameter
-     */
-    fun requestBooksByCategory(categoryId: Long): List<Book> {
-        val booksDb = bookCategoryDao.getBooksByCategory(categoryId)
-        return convertBooks(booksDb)
     }
 
     /**
@@ -69,7 +50,7 @@ class BookRepository : BookDataSource {
     /**
      * Function to know if book that is passed by parameter is favorite
      */
-    fun isFavoriteBook(userEmail: String, bookId: Long) : Boolean {
+    fun isFavoriteBook(userEmail: String, bookId: Long): Boolean {
         val favorite = favoriteDao.existsFavoriteBook(userEmail, bookId)
         if (favorite != null) return true
         return false
@@ -86,13 +67,5 @@ class BookRepository : BookDataSource {
     /**
      * Function to convert each book in the list that is passed by parameter into a domain object
      */
-    private fun convertBooks(booksDb: List<BookEntity>): List<Book> {
-        val books = BookDataMapper.convertToDomain(booksDb)
-        //Get books categories
-        books.forEach {
-            val categoriesDb = bookCategoryDao.getCategoriesByBook(it.id)
-            it.categories = CategoryDataMapper.convertToDomain(categoriesDb)
-        }
-        return books
-    }
+    private fun convertBooks(booksDb: List<BookEntity>): List<Book> = BookDataMapper.convertToDomain(booksDb)
 }

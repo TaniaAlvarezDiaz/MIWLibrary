@@ -12,16 +12,14 @@ import com.miw.dsdm.miwlibrary.model.Book
 import kotlinx.android.synthetic.main.library_card_item.view.*
 
 class LibraryAdapter(
-    val items: MutableList<Book>, val categoryId: Long, val
+    val items: MutableList<Book>, val
     itemClick: (Book) -> Unit
 ) : RecyclerView.Adapter<LibraryAdapter.ViewHolder>(), Filterable {
 
     private var filterList = mutableListOf<Book>()
-    var category : Long = 0L
 
     init {
         filterList = items
-        category = categoryId
     }
 
     class ViewHolder(val cardView: CardView, val itemClick: (Book) -> Unit) :
@@ -57,8 +55,6 @@ class LibraryAdapter(
                 val valSearch = constraint.toString()
                 //Filter by title or author
                 filterList = (if (valSearch.isEmpty()) items else filterByTitleOrAuthor(valSearch.toLowerCase())) as MutableList<Book>
-                //Filter by category
-                if (category != 0L) filterList = filterByCategory()
 
                 val filterResults = FilterResults()
                 filterResults.values = filterList
@@ -88,18 +84,4 @@ class LibraryAdapter(
         }
         return res
     }
-
-    /**
-     * Function that filters books by category
-     */
-    private fun filterByCategory(): MutableList<Book> {
-        val res = mutableListOf<Book>()
-        for (book in filterList) {
-            with(book) {
-                if (!categories.isNullOrEmpty() && categories.any { it.id == category }) res.add(this)
-            }
-        }
-        return res
-    }
-
 }

@@ -11,15 +11,16 @@ import com.bumptech.glide.Glide
 import com.miw.dsdm.miwlibrary.R
 import com.miw.dsdm.miwlibrary.data.storage.local.Settings
 import com.miw.dsdm.miwlibrary.model.Book
-import com.miw.dsdm.miwlibrary.model.User
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_book.*
-import kotlinx.android.synthetic.main.library_card_item.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import splitties.alertdialog.appcompat.*
+import splitties.alertdialog.appcompat.alertDialog
+import splitties.alertdialog.appcompat.message
+import splitties.alertdialog.appcompat.okButton
+import splitties.alertdialog.appcompat.onShow
 
 class BookActivity : AppCompatActivity() {
 
@@ -30,7 +31,7 @@ class BookActivity : AppCompatActivity() {
     private lateinit var loadingDialog: AlertDialog
     lateinit var book: Book
     private var userEmail: String = ""
-    private var favorite : Boolean = false
+    private var favorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +50,7 @@ class BookActivity : AppCompatActivity() {
      */
     private fun initialize() {
         //User logged
-        userEmail =  Settings(this).userLoggedIn.toString()
+        userEmail = Settings(this).userLoggedIn.toString()
 
         //Loading
         loadingDialog = SpotsDialog.Builder().setContext(this).setTheme(R.style.dialog).setCancelable(false).build()
@@ -93,15 +94,6 @@ class BookActivity : AppCompatActivity() {
             showHideComponents(book_summary, book_summary_value, summary)
             //Content
             showHideComponents(book_content, book_content_value, content)
-            //Categories
-            var list = ""
-            categories.forEachIndexed { index, category ->
-                list += when (index) {
-                    0 -> "$category.nicename"
-                    else -> ", $category.nicename"
-                }
-            }
-            showHideComponents(book_categories, book_categories_value, list)
             //Details url
             book_more_information.visibility = if (detailsUrl.isNullOrEmpty()) View.GONE else View.VISIBLE
             book_more_information.setOnClickListener { goToUrl() }

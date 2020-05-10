@@ -18,16 +18,8 @@
         app:iconifiedByDefault="false"
         app:queryHint="@string/library_filter_title_author"
         app:searchIcon="@drawable/ic_search"
-        app:closeIcon="@drawable/ic_remove_search" />
-
-    <Spinner
-        android:id="@+id/library_spinner_categories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dim_20"
-        android:layout_marginBottom="@dimen/dim_20"
-        android:background="@drawable/components_border"
-        android:spinnerMode="dropdown" />
+        app:closeIcon="@drawable/ic_remove_search"
+        android:layout_marginBottom="@dimen/dim_20"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/library_recycler_view"
