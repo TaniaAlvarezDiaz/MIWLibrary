@@ -27,7 +27,7 @@ class LibraryAdapter(
         fun bind(book: Book) {
             with(book) {
                 if (imagePath != null && imagePath.isNotEmpty())
-                    Glide.with(itemView).load(imagePath).into(itemView.library_card_item_image)
+                    Glide.with(itemView).load(imagePath).error(R.drawable.book_cover_not_available).into(itemView.library_card_item_image)
                 itemView.library_card_item_title.text = title
                 itemView.library_card_item_author.text = author
                 itemView.library_card_item_summary.text = summary

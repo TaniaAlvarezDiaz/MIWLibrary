@@ -51,7 +51,7 @@ class Book(
 
         override fun newArray(size: Int): Array<Book?> = arrayOfNulls(size)
 
-        fun requestAllBooks(): List<Book> = BookProvider.requestAllBooks()
+        fun requestAllBooks(connectionInternet: Boolean): List<Book> = BookProvider.requestAllBooks(connectionInternet)
 
         fun requestAllFavoritesBooks(userEmail: String): List<Book> = BookProvider.requestFavoritesBooksByUser(userEmail)
 

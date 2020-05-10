@@ -1,6 +1,8 @@
 package com.miw.dsdm.miwlibrary.ui.fragments
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +32,7 @@ class LibraryFragment : Fragment() {
     private var books: MutableList<Book> = mutableListOf()
     private var searchText: String = ""
     private var userEmail: String = ""
+    private var connectionInternet : Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +50,12 @@ class LibraryFragment : Fragment() {
         //User logged
         userEmail = activity?.let { Settings(it).userLoggedIn.toString() }.toString()
 
+        //SwipeRefreshLayout
+        library_swipe_refresh_layout.setOnRefreshListener {
+            library_swipe_refresh_layout.isRefreshing = true
+            checkInternetConnection()
+        }
+
         //SearchView
         initializeSearchView()
 
@@ -60,6 +69,16 @@ class LibraryFragment : Fragment() {
         library_recycler_view.adapter = libraryAdapter
 
         //Get books
+        checkInternetConnection()
+    }
+
+    /**
+     * Function to check if there is internet connection
+     */
+    private fun checkInternetConnection() {
+        val cm = activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = cm.activeNetwork
+        connectionInternet = if (activeNetwork != null) true else false
         getBooks()
     }
 
@@ -101,6 +120,8 @@ class LibraryFragment : Fragment() {
             goToBookInformation(it)
         }
         library_recycler_view.adapter = libraryAdapter
+
+        showNoResultsMessage()
     }
 
     /**
@@ -109,18 +130,30 @@ class LibraryFragment : Fragment() {
     private fun getBooks() {
         (activity as NavigationActivity).loadingDialog.show()
         CoroutineScope(Dispatchers.IO).launch {
-            val result = Book.requestAllBooks()
+            val result = Book.requestAllBooks(connectionInternet)
             if (!result.isNullOrEmpty()) {
                 withContext(Dispatchers.Main) {
                     (activity as NavigationActivity).loadingDialog.dismiss()
+                    library_swipe_refresh_layout.isRefreshing = false
                     books.addAll(result)
                     updateLibraryAdapter()
                 }
             } else {
                 withContext(Dispatchers.Main) {
                     (activity as NavigationActivity).loadingDialog.dismiss()
+                    library_swipe_refresh_layout.isRefreshing = false
+                    showNoResultsMessage()
                 }
             }
         }
+    }
+
+    /**
+     * Function to show no results message
+     */
+    private fun showNoResultsMessage() {
+        //Show/hide text "No results"
+        library_no_results.visibility = if (books.isEmpty()) View.VISIBLE else View.GONE
+        library_recycler_view.visibility = if (books.isEmpty()) View.GONE else View.VISIBLE
     }
 }

@@ -13,11 +13,15 @@ object BookProvider {
     /**
      * Function to get all books
      */
-    fun requestAllBooks(): List<Book> {
+    fun requestAllBooks(connectionInternet: Boolean): List<Book> {
         var res = emptyList<Book>()
-        for (source in SOURCES) {
-            res = source.requestAllBooks()
-            if (!res.isNullOrEmpty()) break
+        if (connectionInternet) {
+            for (source in SOURCES) {
+                res = source.requestAllBooks()
+                if (!res.isNullOrEmpty()) break
+            }
+        }else {
+           res = SOURCES.get(0).requestAllBooks()
         }
         return res
     }
