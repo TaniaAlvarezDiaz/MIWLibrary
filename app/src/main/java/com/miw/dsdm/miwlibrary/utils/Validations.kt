@@ -14,5 +14,5 @@ object Validations {
     /**
      * Function to check if text that is passed by parameter only contains letters
      */
-    fun validateOnlyText(text: String): Boolean = text.matches("[a-zA-Z ]+".toRegex())
+    fun validateOnlyText(text: String): Boolean = text.matches("[a-záéíóú\u00F1A-ZÁÉÍÓÚ\u00D1 ]+".toRegex())
 }
