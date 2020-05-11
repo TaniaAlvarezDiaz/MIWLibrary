@@ -79,7 +79,7 @@ class BookActivity : AppCompatActivity() {
     private fun fillFields() {
         with(book) {
             //Image
-            Glide.with(this@BookActivity).load(imagePath).into(book_image)
+            Glide.with(this@BookActivity).load(imagePath).error(R.drawable.book_cover_not_available).into(book_image)
             //Title
             showHideComponents(book_title, book_title_value, title)
             //Author
