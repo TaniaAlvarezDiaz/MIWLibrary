@@ -110,7 +110,8 @@ class ChangePasswordActivity : AppCompatActivity() {
                         loadingDialog.dismiss()
                         showDialog(
                             "",
-                            getString(R.string.change_password_alert_message)
+                            getString(R.string.change_password_alert_message),
+                            true
                         )
                     }
                 } else {
@@ -118,7 +119,8 @@ class ChangePasswordActivity : AppCompatActivity() {
                         loadingDialog.dismiss()
                         showDialog(
                             getString(R.string.change_password_error_alert_title),
-                            getString(R.string.error_generic)
+                            getString(R.string.error_generic),
+                            false
                         )
                     }
                 }
@@ -127,7 +129,8 @@ class ChangePasswordActivity : AppCompatActivity() {
                     loadingDialog.dismiss()
                     showDialog(
                         "",
-                        getString(R.string.login_error_alert_message)
+                        getString(R.string.change_password_error_old_password),
+                        false
                     )
                 }
             }
@@ -137,12 +140,12 @@ class ChangePasswordActivity : AppCompatActivity() {
     /**
      * Function to show an alert dialog
      */
-    private fun showDialog(t: String, m: String) {
+    private fun showDialog(t: String, m: String, goBack: Boolean) {
         alertDialog {
             title = t
             message = m
             okButton {
-                onBackPressed()
+                if (goBack) onBackPressed()
             }
         }.onShow {
             setCancelable(false)

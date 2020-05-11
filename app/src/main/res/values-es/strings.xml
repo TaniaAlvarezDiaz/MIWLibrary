@@ -75,6 +75,7 @@
     <string name="change_password_new_password">Nueva contraseña</string>
     <string name="change_password_new_password_repeat">Repetir nueva contraseña</string>
     <string name="change_password_toolbar">Cambiar contraseña</string>
+    <string name="change_password_error_old_password">Antigua contraseña errónea</string>
     <string name="change_password_error_alert_title">Error al cargar la contraseña</string>
     <string name="change_password_error_alert_message">Se ha producido un error al cambiar la contraseña. Por favor, inténtelo de nuevo.</string>
     <string name="change_password_alert_message">La contraseña se ha modificado correctamente.</string>
