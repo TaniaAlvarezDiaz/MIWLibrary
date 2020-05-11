@@ -2,6 +2,7 @@
     <string name="app_name">MIWLibrary</string>
 
     <!-- Errors -->
+    <string name="error_only_letters">Only letters and spaces are allowed</string>
     <string name="error_email_invalid">Invalid email</string>
     <string name="error_empty_field">Empty field</string>
     <string name="error_passwords_different">Passwords must be the same.</string>

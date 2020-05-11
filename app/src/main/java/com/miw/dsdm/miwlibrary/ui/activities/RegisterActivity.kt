@@ -66,12 +66,18 @@ class RegisterActivity : AppCompatActivity() {
         if (user.name.isEmpty()) {
             register_name_value.error = getString(R.string.error_empty_field)
             valid = false
+        } else if (!Validations.validateOnlyText(user.name)) {
+            register_name_value.error = getString(R.string.error_only_letters)
+            valid = false
         } else {
             register_name_value.error = null
         }
 
         if (user.surname.isEmpty()) {
             register_surname_value.error = getString(R.string.error_empty_field)
+            valid = false
+        }else if (!Validations.validateOnlyText(user.surname)) {
+            register_surname_value.error = getString(R.string.error_only_letters)
             valid = false
         } else {
             register_surname_value.error = null

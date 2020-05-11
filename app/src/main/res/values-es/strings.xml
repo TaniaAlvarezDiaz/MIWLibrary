@@ -3,6 +3,7 @@
     <string name="app_name">MIWLibrary</string>
 
     <!-- Errors -->
+    <string name="error_only_letters">Solo se permiten letras y espacios</string>
     <string name="error_email_invalid">Email inválido</string>
     <string name="error_empty_field">Campo vacío</string>
     <string name="error_passwords_different">Las contraseñas deben ser iguales.</string>
